@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    [SerializeField] private int damage = 25;
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float duration = 3f;
+    public float speed = 5f;
+    public float duration = 3f;
+    private int damage;
 
     void Start()
     {
+        // Get damage from PlayerController
+        damage = PlayerController.Instance.laserDamage;
         Destroy(gameObject, duration);
     }
 
@@ -20,17 +22,11 @@ public class Laser : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<EnemyHealth>()?.TakeDamage(damage);
-
-            // Apply knockback
-            EnemyKnockback knockback = collision.GetComponent<EnemyKnockback>();
-
-            if (knockback != null)
+            var health = collision.GetComponent<EnemyHealth>();
+            if (health != null)
             {
-                Vector2 direction = (collision.transform.position - transform.position).normalized;
-                knockback.ApplyKnockback(direction);
+                health.TakeDamage(damage);
             }
-
             Destroy(gameObject);
         }
     }
