@@ -2,12 +2,25 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+
     [Header("Shooting")]
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private float fireCooldown = 0.2f;
 
     private float fireTimer;
+    public int killCounter = 0;
+
+    void Awake()
+    {
+        if(Instance == null)
+            Instance = this;
+
+        else
+            Destroy(gameObject);
+
+    }
 
     void Update()
     {
