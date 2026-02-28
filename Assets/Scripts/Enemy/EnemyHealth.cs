@@ -49,17 +49,14 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         isDead = true;
-
         DisableVisualsAndPlayAudio();
 
         if (explodeParticle != null)
         {
-            // Detach particle from enemy
             explodeParticle.transform.parent = null;
 
             explodeParticle.Play();
 
-            // Destroy particle after it finishes
             Destroy(explodeParticle.gameObject,
                 explodeParticle.main.duration +
                 explodeParticle.main.startLifetime.constantMax);
@@ -70,6 +67,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void DisableVisualsAndPlayAudio()
     {
+        GridJuiceFX.Instance.TriggerBurst();
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null)
         {

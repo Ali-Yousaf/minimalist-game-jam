@@ -36,8 +36,12 @@ public class PlayerUpgradeManager : MonoBehaviour
     private bool upgradePending = false;
     private Upgrade[] currentOptions = new Upgrade[2];
 
+    private Spawner spawner;
+
     void Awake()
     {
+        spawner = FindFirstObjectByType<Spawner>();
+
         // --- Hardcoded Upgrades ---
         allUpgrades.Add(new Upgrade {
             upgradeName = "Double Lasers",
@@ -48,7 +52,7 @@ public class PlayerUpgradeManager : MonoBehaviour
         allUpgrades.Add(new Upgrade {
             upgradeName = "Faster Fire",
             description = "Reduces cooldown between shots",
-            applyUpgrade = () => PlayerController.Instance.ReduceFireCooldown(0.4f)
+            applyUpgrade = () => PlayerController.Instance.ReduceFireCooldown(0.35f)
         });
 
         allUpgrades.Add(new Upgrade {
@@ -72,7 +76,7 @@ public class PlayerUpgradeManager : MonoBehaviour
         allUpgrades.Add(new Upgrade {
             upgradeName = "Rapid Fire",
             description = "Reduces cooldown further",
-            applyUpgrade = () => PlayerController.Instance.ReduceFireCooldown(0.05f)
+            applyUpgrade = () => PlayerController.Instance.ReduceFireCooldown(0.2f)
         });
 
         allUpgrades.Add(new Upgrade {
@@ -116,6 +120,12 @@ public class PlayerUpgradeManager : MonoBehaviour
 
     void ShowUpgradePanel()
     {
+        spawner.spawningEnabled = false;
+        foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            Destroy(enemy);
+        }
+
         if (availableUpgrades.Count < 2)
         {
             Debug.LogWarning("Not enough upgrades left to show two options.");
@@ -174,5 +184,7 @@ public class PlayerUpgradeManager : MonoBehaviour
             Time.timeScale = 1f;
             upgradePending = false;
         });
+
+        spawner.spawningEnabled = true;
     }
 }

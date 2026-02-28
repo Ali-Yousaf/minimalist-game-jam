@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
         fireTimer = fireCooldown;
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.laserShootSFX);
+        //GridJuiceFX.Instance.TriggerBurst();
 
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPosition);
         worldPos.z = 0f;

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using DG.Tweening.Core.Easing;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -42,19 +43,16 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= amount;
 
-        // Screen shake (already in your code)
         CameraShake.Instance.Shake(0.2f, 0.2f);
 
-        // Optional: decrease kills
         if (PlayerController.Instance != null)
             PlayerController.Instance.killCounter--;
 
-        // Flash red
         if (spriteRenderer != null)
             StartCoroutine(FlashRed());
 
-        // Player local shake
         StartCoroutine(ShakePlayer());
+        GridJuiceFX.Instance.Flash();
     }
 
     private IEnumerator FlashRed()
