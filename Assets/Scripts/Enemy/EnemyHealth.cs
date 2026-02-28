@@ -5,20 +5,34 @@ public class EnemyHealth : MonoBehaviour
     [Header("Health Settings")]
     [SerializeField] private float maxHealth = 100f;
 
+    [Header("Effects")]
+    [SerializeField] private ParticleSystem explodeParticle; // Assign CHILD particle here
+
     private float currentHealth;
     private EnemyHealthBar healthBar;
+    private bool isDead = false;
 
     private void Awake()
     {
         currentHealth = maxHealth;
-        healthBar = GetComponentInChildren<EnemyHealthBar>();
 
+        healthBar = GetComponentInChildren<EnemyHealthBar>();
         if (healthBar != null)
+        {
             healthBar.Initialize(maxHealth);
+        }
+
+        // Make sure particle is stopped at start
+        if (explodeParticle != null)
+        {
+            explodeParticle.Stop();
+        }
     }
 
     public void TakeDamage(float damage)
     {
+        if (isDead) return;
+
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
 
@@ -34,7 +48,37 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
-        PlayerController.Instance.killCounter++;
+        isDead = true;
+
+        DisableVisualsAndPlayAudio();
+
+        if (explodeParticle != null)
+        {
+            // Detach particle from enemy
+            explodeParticle.transform.parent = null;
+
+            explodeParticle.Play();
+
+            // Destroy particle after it finishes
+            Destroy(explodeParticle.gameObject,
+                explodeParticle.main.duration +
+                explodeParticle.main.startLifetime.constantMax);
+        }
+
         Destroy(gameObject);
+    }
+
+    private void DisableVisualsAndPlayAudio()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.enabled = false;
+        }
+
+        healthBar?.gameObject.SetActive(false);
+
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.explosionSFX);
+        PlayerController.Instance.killCounter++;
     }
 }

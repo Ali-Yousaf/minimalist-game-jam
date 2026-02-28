@@ -37,9 +37,11 @@ public class PlayerController : MonoBehaviour
     }
 
     private void ShootAt(Vector2 screenPosition)
-    {
+    {   
         if (fireTimer > 0f) return;
         fireTimer = fireCooldown;
+
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.laserShootSFX);
 
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPosition);
         worldPos.z = 0f;
@@ -72,7 +74,7 @@ public class PlayerController : MonoBehaviour
                 break;
 
             default:
-                // For >4 spawners, distribute evenly in a circle
+
                 for (int i = 0; i < currentBulletSpawners; i++)
                 {
                     float spread = 360f / currentBulletSpawners * i;
