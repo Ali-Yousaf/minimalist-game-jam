@@ -11,7 +11,7 @@ public class PlayerUpgradeManager : MonoBehaviour
     {
         public string upgradeName;
         public string description;
-        public System.Action applyUpgrade; // Function to call
+        public System.Action applyUpgrade;
     }
 
     [Header("UI References")]
@@ -28,11 +28,11 @@ public class PlayerUpgradeManager : MonoBehaviour
     [Header("Kill Milestones")]
     public int[] killMilestones = { 1, 25, 50, 100, 250, 500, 1000 };
 
-    [Header("All Upgrades")]
+    [Header("All Upgrades (Ordered)")]
     public List<Upgrade> allUpgrades = new List<Upgrade>();
 
-    private List<Upgrade> availableUpgrades = new List<Upgrade>();
     private int currentMilestoneIndex = 0;
+    private int currentUpgradeIndex = 0;
     private bool upgradePending = false;
     private Upgrade[] currentOptions = new Upgrade[2];
 
@@ -42,7 +42,8 @@ public class PlayerUpgradeManager : MonoBehaviour
     {
         spawner = FindFirstObjectByType<Spawner>();
 
-        // --- Hardcoded Upgrades ---
+        // ===== ORDER MATTERS HERE =====
+
         allUpgrades.Add(new Upgrade {
             upgradeName = "Double Lasers",
             description = "Adds a second bullet spawner",
@@ -68,12 +69,6 @@ public class PlayerUpgradeManager : MonoBehaviour
         });
 
         allUpgrades.Add(new Upgrade {
-            upgradeName = "Quadruple Lasers",
-            description = "Adds a fourth bullet spawner",
-            applyUpgrade = () => PlayerController.Instance.AddBulletSpawner()
-        });
-
-        allUpgrades.Add(new Upgrade {
             upgradeName = "Rapid Fire",
             description = "Reduces cooldown further",
             applyUpgrade = () => PlayerController.Instance.ReduceFireCooldown(0.2f)
@@ -83,12 +78,6 @@ public class PlayerUpgradeManager : MonoBehaviour
             upgradeName = "High Damage",
             description = "Increase laser damage by 10",
             applyUpgrade = () => PlayerController.Instance.IncreaseLaserDamage(10)
-        });
-
-        allUpgrades.Add(new Upgrade {
-            upgradeName = "Extra Bullet Spawner",
-            description = "Adds another bullet spawner (max 10)",
-            applyUpgrade = () => PlayerController.Instance.AddBulletSpawner()
         });
 
         allUpgrades.Add(new Upgrade {
@@ -102,8 +91,6 @@ public class PlayerUpgradeManager : MonoBehaviour
             description = "Greatly increases laser damage",
             applyUpgrade = () => PlayerController.Instance.IncreaseLaserDamage(20)
         });
-
-        availableUpgrades = new List<Upgrade>(allUpgrades);
     }
 
     void Update()
@@ -120,35 +107,29 @@ public class PlayerUpgradeManager : MonoBehaviour
 
     void ShowUpgradePanel()
     {
-        spawner.spawningEnabled = false;
-        foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-        {
-            Destroy(enemy);
-        }
+        if (currentUpgradeIndex >= allUpgrades.Count)
+            return; // No upgrades left
 
-        if (availableUpgrades.Count < 2)
-        {
-            Debug.LogWarning("Not enough upgrades left to show two options.");
-            return;
-        }
+        spawner.spawningEnabled = false;
+
+        foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            Destroy(enemy);
 
         upgradePending = true;
         upgradePanel.SetActive(true);
-        //Time.timeScale = 0f;
 
-        // Pick two random upgrades
-        int index1 = Random.Range(0, availableUpgrades.Count);
-        currentOptions[0] = availableUpgrades[index1];
-        availableUpgrades.RemoveAt(index1);
+        // ===== ORDERED SELECTION =====
+        currentOptions[0] = allUpgrades[currentUpgradeIndex];
 
-        int index2 = Random.Range(0, availableUpgrades.Count);
-        currentOptions[1] = availableUpgrades[index2];
+        if (currentUpgradeIndex + 1 < allUpgrades.Count)
+            currentOptions[1] = allUpgrades[currentUpgradeIndex + 1];
+        else
+            currentOptions[1] = null;
 
-        // Reset scale for animation
+        // Animate
         card1Rect.localScale = Vector3.zero;
         card2Rect.localScale = Vector3.zero;
 
-        // Animate panel in
         upgradePanel.transform.localPosition = new Vector3(0, 600, 0);
         upgradePanel.transform.DOLocalMoveY(0, 0.5f).SetEase(Ease.OutBack);
         card1Rect.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).SetDelay(0.2f);
@@ -157,10 +138,18 @@ public class PlayerUpgradeManager : MonoBehaviour
         // Update UI
         card1NameText.text = currentOptions[0].upgradeName;
         card1DescText.text = currentOptions[0].description;
-        card2NameText.text = currentOptions[1].upgradeName;
-        card2DescText.text = currentOptions[1].description;
 
-        // Remove old listeners
+        if (currentOptions[1] != null)
+        {
+            card2NameText.text = currentOptions[1].upgradeName;
+            card2DescText.text = currentOptions[1].description;
+            card2Button.gameObject.SetActive(true);
+        }
+        else
+        {
+            card2Button.gameObject.SetActive(false);
+        }
+
         card1Button.onClick.RemoveAllListeners();
         card2Button.onClick.RemoveAllListeners();
 
@@ -170,10 +159,14 @@ public class PlayerUpgradeManager : MonoBehaviour
 
     void PickUpgrade(int chosenIndex)
     {
-        // Apply chosen upgrade
-        currentOptions[chosenIndex].applyUpgrade?.Invoke(); // <-- Uncomment this line to apply
+        if (currentOptions[chosenIndex] == null)
+            return;
 
-        // Animate panel out
+        currentOptions[chosenIndex].applyUpgrade?.Invoke();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.upgradeUnlockSFX);
+
+        currentUpgradeIndex += 2; // Move forward in order
+
         Sequence seq = DOTween.Sequence();
         seq.Append(card1Rect.DOScale(Vector3.zero, 0.25f).SetEase(Ease.InBack));
         seq.Join(card2Rect.DOScale(Vector3.zero, 0.25f).SetEase(Ease.InBack));
@@ -181,7 +174,6 @@ public class PlayerUpgradeManager : MonoBehaviour
         seq.OnComplete(() =>
         {
             upgradePanel.SetActive(false);
-            Time.timeScale = 1f;
             upgradePending = false;
         });
 

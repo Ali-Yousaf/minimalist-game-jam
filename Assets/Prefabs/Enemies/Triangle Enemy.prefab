@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb4d3939c72a7a4ba21589c4e46b342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZigZagEnemyFollow
-  moveSpeed: 5
+  moveSpeed: 4
   zigzagAmplitude: 5
   zigzagFrequency: 5
 --- !u!114 &3571305210254749814
@@ -318,8 +318,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f77535ebe1ffbd49a0e62dd7974ad30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 150
+  maxHealth: 50
   explodeParticle: {fileID: 2337480755071693380}
+  enemyType: 1
 --- !u!114 &3883681511738729160
 MonoBehaviour:
   m_ObjectHideFlags: 0

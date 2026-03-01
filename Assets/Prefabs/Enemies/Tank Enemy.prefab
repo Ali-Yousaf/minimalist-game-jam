@@ -10061,7 +10061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7837cacf269145a45a02e0b302c7f39e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFollow
-  moveSpeed: 2
+  moveSpeed: 1.5
   rotateTowardsPlayer: 1
 --- !u!114 &7713804385178556141
 MonoBehaviour:
@@ -10077,6 +10077,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 300
   explodeParticle: {fileID: 7711319460192745033}
+  enemyType: 3
 --- !u!114 &5182803766908624527
 MonoBehaviour:
   m_ObjectHideFlags: 0

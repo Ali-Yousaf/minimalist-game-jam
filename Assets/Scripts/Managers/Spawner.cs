@@ -27,11 +27,9 @@ public class Spawner : MonoBehaviour
 
         foreach (var enemy in enemies)
         {
-            // Only spawn if kills reached unlock
             if (kills >= enemy.unlockKills)
             {
-                // Scale spawn interval based on kills
-                float scaledInterval = Mathf.Max(enemy.baseSpawnInterval - kills * 0.05f, enemy.minSpawnInterval);
+                float scaledInterval = Mathf.Max(enemy.baseSpawnInterval - kills * 0.03f, enemy.minSpawnInterval);
                 enemy.timer += Time.deltaTime;
 
                 if (enemy.timer >= scaledInterval)

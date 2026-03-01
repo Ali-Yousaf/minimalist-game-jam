@@ -8,6 +8,8 @@ public class EnemyHealth : MonoBehaviour
     [Header("Effects")]
     [SerializeField] private ParticleSystem explodeParticle; // Assign CHILD particle here
 
+    [SerializeField] private KillCounter.EnemyType enemyType;
+
     private float currentHealth;
     private EnemyHealthBar healthBar;
     private bool isDead = false;
@@ -18,15 +20,10 @@ public class EnemyHealth : MonoBehaviour
 
         healthBar = GetComponentInChildren<EnemyHealthBar>();
         if (healthBar != null)
-        {
             healthBar.Initialize(maxHealth);
-        }
 
-        // Make sure particle is stopped at start
         if (explodeParticle != null)
-        {
             explodeParticle.Stop();
-        }
     }
 
     public void TakeDamage(float damage)
@@ -41,9 +38,7 @@ public class EnemyHealth : MonoBehaviour
         healthBar?.UpdateHealth(currentHealth);
 
         if (currentHealth <= 0f)
-        {
             Die();
-        }
     }
 
     private void Die()
@@ -54,7 +49,6 @@ public class EnemyHealth : MonoBehaviour
         if (explodeParticle != null)
         {
             explodeParticle.transform.parent = null;
-
             explodeParticle.Play();
 
             Destroy(explodeParticle.gameObject,
@@ -68,15 +62,20 @@ public class EnemyHealth : MonoBehaviour
     private void DisableVisualsAndPlayAudio()
     {
         GridJuiceFX.Instance.TriggerBurst();
+
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null)
-        {
             sr.enabled = false;
-        }
 
         healthBar?.gameObject.SetActive(false);
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.explosionSFX);
+
+        // Register the kill — KillCounter handles saving to PlayerPrefs internally
+        KillCounter.Instance.AddKill(enemyType);
         PlayerController.Instance.killCounter++;
+
+        StatsUI stats = FindFirstObjectByType<StatsUI>();
+        stats?.UpdateStatsUI();
     }
 }
