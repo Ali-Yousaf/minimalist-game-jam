@@ -53,7 +53,7 @@ public class PlayerUpgradeManager : MonoBehaviour
         allUpgrades.Add(new Upgrade {
             upgradeName = "Faster Fire",
             description = "Reduces cooldown between shots",
-            applyUpgrade = () => PlayerController.Instance.ReduceFireCooldown(0.35f)
+            applyUpgrade = () => PlayerController.Instance.ReduceFireCooldown(0.3f)
         });
 
         allUpgrades.Add(new Upgrade {
@@ -75,6 +75,12 @@ public class PlayerUpgradeManager : MonoBehaviour
         });
 
         allUpgrades.Add(new Upgrade {
+            upgradeName = "Ultra Lasers",
+            description = "Adds another bullet spawner",
+            applyUpgrade = () => PlayerController.Instance.AddBulletSpawner()
+        });
+
+        allUpgrades.Add(new Upgrade {
             upgradeName = "High Damage",
             description = "Increase laser damage by 10",
             applyUpgrade = () => PlayerController.Instance.IncreaseLaserDamage(10)
@@ -84,6 +90,12 @@ public class PlayerUpgradeManager : MonoBehaviour
             upgradeName = "Ultimate Fire Rate",
             description = "Significantly reduces cooldown",
             applyUpgrade = () => PlayerController.Instance.ReduceFireCooldown(0.1f)
+        });
+
+        allUpgrades.Add(new Upgrade {
+            upgradeName = "Rampage",
+            description = "You are now a Laser Machine",
+            applyUpgrade = () => PlayerController.Instance.AddBulletSpawner()
         });
 
         allUpgrades.Add(new Upgrade {

@@ -20,15 +20,19 @@ public class PauseMenuHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (statsPanel.activeSelf)
-            {
-                // If stats panel open, hide it first
-                HideStatsPanel();
-            }
-            else
-            {
-                TogglePause();
-            }
+            PauseButtonPressed();
+        }
+    }
+
+    public void PauseButtonPressed()
+    {
+        if (statsPanel.activeSelf)
+        {
+            HideStatsPanel();
+        }
+        else
+        {
+            TogglePause();
         }
     }
 

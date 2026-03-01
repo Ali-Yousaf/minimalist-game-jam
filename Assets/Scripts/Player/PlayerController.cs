@@ -89,6 +89,12 @@ public class PlayerController : MonoBehaviour
     // Upgrade Functions
     // =============================
 
+    public void ReduceFireCooldown(float amount)
+    {
+        fireCooldown = Mathf.Max(0.05f, amount);
+        Debug.Log("New fire cooldown: " + fireCooldown);
+    }
+    
     public void AddBulletSpawner()
     {
         if (currentBulletSpawners < maxBulletSpawners)
@@ -98,33 +104,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ReduceFireCooldown(float amount)
-    {
-        fireCooldown = Mathf.Max(0.05f, fireCooldown - amount);
-        Debug.Log("New fire cooldown: " + fireCooldown);
-    }
-
     public void IncreaseLaserDamage(int amount)
     {
         laserDamage += amount;
         Debug.Log("Laser damage: " + laserDamage);
-    }
-
-    public void MaximizeBullets()
-    {
-        currentBulletSpawners = maxBulletSpawners;
-        Debug.Log("Bullet spawners maxed!");
-    }
-
-    public void SuperFireRate()
-    {
-        fireCooldown = 0.05f;
-        Debug.Log("Fire rate maxed!");
-    }
-
-    public void UltraLaser()
-    {
-        laserDamage += 50;
-        Debug.Log("Laser damage greatly increased!");
     }
 }

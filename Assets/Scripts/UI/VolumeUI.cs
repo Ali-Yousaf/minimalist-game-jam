@@ -8,11 +8,9 @@ public class VolumeUI : MonoBehaviour
 
     private void Start()
     {
-        // Set slider values from saved audio
         musicSlider.value = AudioManager.Instance.GetMusicVolume();
         sfxSlider.value = AudioManager.Instance.GetSFXVolume();
 
-        // Add listeners
         musicSlider.onValueChanged.AddListener(OnMusicSliderChanged);
         sfxSlider.onValueChanged.AddListener(OnSFXSliderChanged);
     }
