@@ -4,6 +4,14 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
 
+    [Header("Movement")]
+    [SerializeField] private float moveSpeed = 5f;
+    private Rigidbody2D rb;
+    private Vector2 movement;
+
+    [Header("Boundary Settings")]
+    [SerializeField] private PolygonCollider2D mapBoundary;
+
     [Header("Shooting")]
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private Transform firePoint;
@@ -16,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public int currentBulletSpawners = 1;
 
     private float fireTimer;
+    [SerializeField] private bool canMove = false;
 
     void Awake()
     {
@@ -23,11 +32,15 @@ public class PlayerController : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         fireTimer -= Time.deltaTime;
+
+        HandleMovementInput();
 
         if (Input.GetMouseButton(0))
             ShootAt(Input.mousePosition);
@@ -36,13 +49,62 @@ public class PlayerController : MonoBehaviour
             ShootAt(Input.GetTouch(0).position);
     }
 
+    void FixedUpdate()
+    {
+        if (!canMove)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
+        Vector2 newPosition = rb.position + movement * moveSpeed * Time.fixedDeltaTime;
+
+        newPosition = ClampInsideBoundary(newPosition);
+
+        rb.MovePosition(newPosition);
+    }
+
+    private void HandleMovementInput()
+    {
+        if (!canMove)
+        {
+            movement = Vector2.zero;
+            return;
+        }
+
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
+
+        movement = new Vector2(moveX, moveY).normalized;
+    }
+
+    // =============================
+    // PERFECT BOUNDARY SYSTEM
+    // =============================
+
+    private Vector2 ClampInsideBoundary(Vector2 targetPos)
+    {
+        if (mapBoundary == null)
+            return targetPos;
+
+        Bounds bounds = mapBoundary.bounds;
+
+        float clampedX = Mathf.Clamp(targetPos.x, bounds.min.x, bounds.max.x);
+        float clampedY = Mathf.Clamp(targetPos.y, bounds.min.y, bounds.max.y);
+
+        return new Vector2(clampedX, clampedY);
+    }
+
+    // =============================
+    // Shooting
+    // =============================
+
     private void ShootAt(Vector2 screenPosition)
-    {   
+    {
         if (fireTimer > 0f) return;
         fireTimer = fireCooldown;
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.laserShootSFX);
-        //GridJuiceFX.Instance.TriggerBurst();
 
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPosition);
         worldPos.z = 0f;
@@ -52,34 +114,34 @@ public class PlayerController : MonoBehaviour
 
         firePoint.rotation = Quaternion.Euler(0f, 0f, angle);
 
-        // Shoot bullets based on the current pattern
         switch (currentBulletSpawners)
         {
             case 1:
-                // Straight forward
                 Instantiate(laserPrefab, firePoint.position, firePoint.rotation);
                 break;
 
             case 2:
-                // Forward + backward
                 Instantiate(laserPrefab, firePoint.position, firePoint.rotation);
-                Instantiate(laserPrefab, firePoint.position, firePoint.rotation * Quaternion.Euler(0, 0, 180f));
+                Instantiate(laserPrefab, firePoint.position,
+                    firePoint.rotation * Quaternion.Euler(0, 0, 180f));
                 break;
 
             case 4:
-                // Plus pattern
-                Instantiate(laserPrefab, firePoint.position, firePoint.rotation); // forward
-                Instantiate(laserPrefab, firePoint.position, firePoint.rotation * Quaternion.Euler(0, 0, 180f)); // backward
-                Instantiate(laserPrefab, firePoint.position, firePoint.rotation * Quaternion.Euler(0, 0, 90f)); // up
-                Instantiate(laserPrefab, firePoint.position, firePoint.rotation * Quaternion.Euler(0, 0, -90f)); // down
+                Instantiate(laserPrefab, firePoint.position, firePoint.rotation);
+                Instantiate(laserPrefab, firePoint.position,
+                    firePoint.rotation * Quaternion.Euler(0, 0, 180f));
+                Instantiate(laserPrefab, firePoint.position,
+                    firePoint.rotation * Quaternion.Euler(0, 0, 90f));
+                Instantiate(laserPrefab, firePoint.position,
+                    firePoint.rotation * Quaternion.Euler(0, 0, -90f));
                 break;
 
             default:
-
                 for (int i = 0; i < currentBulletSpawners; i++)
                 {
                     float spread = 360f / currentBulletSpawners * i;
-                    Instantiate(laserPrefab, firePoint.position, firePoint.rotation * Quaternion.Euler(0, 0, spread));
+                    Instantiate(laserPrefab, firePoint.position,
+                        firePoint.rotation * Quaternion.Euler(0, 0, spread));
                 }
                 break;
         }
@@ -94,7 +156,7 @@ public class PlayerController : MonoBehaviour
         fireCooldown = Mathf.Max(0.05f, amount);
         Debug.Log("New fire cooldown: " + fireCooldown);
     }
-    
+
     public void AddBulletSpawner()
     {
         if (currentBulletSpawners < maxBulletSpawners)
@@ -108,5 +170,15 @@ public class PlayerController : MonoBehaviour
     {
         laserDamage += amount;
         Debug.Log("Laser damage: " + laserDamage);
+    }
+
+    public void EnableMovement()
+    {
+        canMove = true;
+    }
+
+    public void IncreaseMovementSpeed(float amount)
+    {
+        moveSpeed += amount;
     }
 }

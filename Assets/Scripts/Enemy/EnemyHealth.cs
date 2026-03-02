@@ -74,7 +74,7 @@ public class EnemyHealth : MonoBehaviour
         // Register the kill — KillCounter handles saving to PlayerPrefs internally
         KillCounter.Instance.AddKill(enemyType);
         PlayerController.Instance.killCounter++;
-
+        ScoreManager.SaveHighScore();
         StatsUI stats = FindFirstObjectByType<StatsUI>();
         stats?.UpdateStatsUI();
     }

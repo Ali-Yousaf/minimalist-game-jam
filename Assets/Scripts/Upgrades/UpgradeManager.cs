@@ -45,8 +45,8 @@ public class PlayerUpgradeManager : MonoBehaviour
         // ===== ORDER MATTERS HERE =====
 
         allUpgrades.Add(new Upgrade {
-            upgradeName = "Double Lasers",
-            description = "Adds a second bullet spawner",
+            upgradeName = "+1 Laser",
+            description = "Adds an extra bullet spawner",
             applyUpgrade = () => PlayerController.Instance.AddBulletSpawner()
         });
 
@@ -63,9 +63,15 @@ public class PlayerUpgradeManager : MonoBehaviour
         });
 
         allUpgrades.Add(new Upgrade {
-            upgradeName = "Triple Lasers",
-            description = "Adds a third bullet spawner",
+            upgradeName = "+1 Lasers",
+            description = "Adds an extra bullet spawner",
             applyUpgrade = () => PlayerController.Instance.AddBulletSpawner()
+        });
+
+        allUpgrades.Add(new Upgrade {
+            upgradeName = "MOVEMENT = TRUE",
+            description = "You can now move around.",
+            applyUpgrade = () => PlayerController.Instance.EnableMovement()
         });
 
         allUpgrades.Add(new Upgrade {
@@ -81,27 +87,39 @@ public class PlayerUpgradeManager : MonoBehaviour
         });
 
         allUpgrades.Add(new Upgrade {
+            upgradeName = "Faster Movement",
+            description = "You can move faster now.",
+            applyUpgrade = () => PlayerController.Instance.IncreaseMovementSpeed(2f)
+        });
+
+        allUpgrades.Add(new Upgrade {
             upgradeName = "High Damage",
             description = "Increase laser damage by 10",
             applyUpgrade = () => PlayerController.Instance.IncreaseLaserDamage(10)
         });
 
         allUpgrades.Add(new Upgrade {
-            upgradeName = "Ultimate Fire Rate",
+            upgradeName = "ULTIMATE FIRE",
             description = "Significantly reduces cooldown",
             applyUpgrade = () => PlayerController.Instance.ReduceFireCooldown(0.1f)
         });
 
         allUpgrades.Add(new Upgrade {
-            upgradeName = "Rampage",
+            upgradeName = " BULLET RAMPAGE",
             description = "You are now a Laser Machine",
             applyUpgrade = () => PlayerController.Instance.AddBulletSpawner()
         });
 
         allUpgrades.Add(new Upgrade {
-            upgradeName = "Laser Overload",
+            upgradeName = "LASER OVERLOAD",
             description = "Greatly increases laser damage",
             applyUpgrade = () => PlayerController.Instance.IncreaseLaserDamage(20)
+        });
+
+        allUpgrades.Add(new Upgrade {
+            upgradeName = "THUNDERBOLT",
+            description = "You can move like lightning.",
+            applyUpgrade = () => PlayerController.Instance.IncreaseMovementSpeed(3f)
         });
     }
 
