@@ -1,3 +1,4 @@
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -27,5 +28,6 @@ public class GameManager : MonoBehaviour
     {
         ScoreManager.ResetHighScore();
         KillCounter.Instance.ResetAllKills();
+        FindAnyObjectByType<StatsUI>().UpdateStatsUI();
     }
 }

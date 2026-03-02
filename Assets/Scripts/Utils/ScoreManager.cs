@@ -26,6 +26,7 @@ public static class ScoreManager
     public static void ResetHighScore()
     {
         HighScore = 0;
+        PlayerPrefs.Save();
     }
 
     public static int GetHighScore()
