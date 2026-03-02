@@ -41,7 +41,7 @@ public class EnemyHealth : MonoBehaviour
             Die();
     }
 
-    private void Die()
+    public void Die()
     {
         isDead = true;
         DisableVisualsAndPlayAudio();

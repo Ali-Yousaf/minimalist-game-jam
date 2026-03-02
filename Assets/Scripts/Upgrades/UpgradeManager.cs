@@ -63,15 +63,15 @@ public class PlayerUpgradeManager : MonoBehaviour
         });
 
         allUpgrades.Add(new Upgrade {
-            upgradeName = "+1 Lasers",
-            description = "Adds an extra bullet spawner",
-            applyUpgrade = () => PlayerController.Instance.AddBulletSpawner()
-        });
-
-        allUpgrades.Add(new Upgrade {
             upgradeName = "MOVEMENT = TRUE",
             description = "You can now move around.",
             applyUpgrade = () => PlayerController.Instance.EnableMovement()
+        });
+
+        allUpgrades.Add(new Upgrade {
+            upgradeName = "+1 Lasers",
+            description = "Adds an extra bullet spawner",
+            applyUpgrade = () => PlayerController.Instance.AddBulletSpawner()
         });
 
         allUpgrades.Add(new Upgrade {
