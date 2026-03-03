@@ -32,7 +32,6 @@ public class PlayerUpgradeManager : MonoBehaviour
     public List<Upgrade> allUpgrades = new List<Upgrade>();
 
     private int currentMilestoneIndex = 0;
-    private int currentUpgradeIndex = 0;
     private bool upgradePending = false;
     private Upgrade[] currentOptions = new Upgrade[2];
 
@@ -105,7 +104,7 @@ public class PlayerUpgradeManager : MonoBehaviour
         });
 
         allUpgrades.Add(new Upgrade {
-            upgradeName = " BULLET RAMPAGE",
+            upgradeName = "BULLET RAMPAGE",
             description = "You are now a Laser Machine",
             applyUpgrade = () => PlayerController.Instance.AddBulletSpawner()
         });
@@ -137,8 +136,8 @@ public class PlayerUpgradeManager : MonoBehaviour
 
     void ShowUpgradePanel()
     {
-        if (currentUpgradeIndex >= allUpgrades.Count)
-            return; // No upgrades left
+        if (allUpgrades.Count == 0)
+            return;
 
         spawner.spawningEnabled = false;
 
@@ -148,11 +147,11 @@ public class PlayerUpgradeManager : MonoBehaviour
         upgradePending = true;
         upgradePanel.SetActive(true);
 
-        // ===== ORDERED SELECTION =====
-        currentOptions[0] = allUpgrades[currentUpgradeIndex];
+        // Always take first two upgrades in order
+        currentOptions[0] = allUpgrades[0];
 
-        if (currentUpgradeIndex + 1 < allUpgrades.Count)
-            currentOptions[1] = allUpgrades[currentUpgradeIndex + 1];
+        if (allUpgrades.Count > 1)
+            currentOptions[1] = allUpgrades[1];
         else
             currentOptions[1] = null;
 
@@ -192,10 +191,14 @@ public class PlayerUpgradeManager : MonoBehaviour
         if (currentOptions[chosenIndex] == null)
             return;
 
-        currentOptions[chosenIndex].applyUpgrade?.Invoke();
+        Upgrade chosenUpgrade = currentOptions[chosenIndex];
+
+        // Apply upgrade
+        chosenUpgrade.applyUpgrade?.Invoke();
         AudioManager.Instance.PlaySFX(AudioManager.Instance.upgradeUnlockSFX);
 
-        currentUpgradeIndex += 2; // Move forward in order
+        // Remove ONLY the chosen upgrade
+        allUpgrades.Remove(chosenUpgrade);
 
         Sequence seq = DOTween.Sequence();
         seq.Append(card1Rect.DOScale(Vector3.zero, 0.25f).SetEase(Ease.InBack));
