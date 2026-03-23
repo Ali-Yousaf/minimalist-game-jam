@@ -10,14 +10,10 @@ public class Shield : MonoBehaviour
     [SerializeField] private GameObject playerShield;
     [SerializeField] private float shieldDuration = 5f;
 
-    private void Awake()
+    private void Start()
     {
-        if (shieldButton != null)
-        {
-            StartCoroutine(StartCircularFill());
-        }
-
         playerShield.SetActive(false);
+        StartCoroutine(InitialFill());
     }
 
     public void ActivateShield()
@@ -26,9 +22,8 @@ public class Shield : MonoBehaviour
 
         if (fill.IsFull())
         {
-            ActivePlayerShield();  
-            fill.ResetFill(); 
-            StartCoroutine(StartCircularFill());
+            fill.ResetFill();
+            StartCoroutine(ShieldRoutine());
         }
         else
         {
@@ -41,22 +36,21 @@ public class Shield : MonoBehaviour
         }
     }
 
-    IEnumerator StartCircularFill()
+    private IEnumerator InitialFill()
     {
         yield return new WaitForSeconds(2f);
         fill.StartFill();
     }
 
-    private void ActivePlayerShield()
-    {
-        StartCoroutine(ShieldRoutine());
-    }
-
     private IEnumerator ShieldRoutine()
     {
         playerShield.SetActive(true);
+
         yield return new WaitForSeconds(shieldDuration);
+
         playerShield.SetActive(false);
+
+        yield return new WaitForSeconds(2f); 
+        fill.StartFill();
     }
 }
-            

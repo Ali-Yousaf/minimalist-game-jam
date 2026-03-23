@@ -5,13 +5,11 @@ using System.Collections;
 
 public class Rocket : MonoBehaviour
 {
-    private CircularFill fill; 
+    [SerializeField] private CircularFill fill; 
     [SerializeField] private Button rocketButton;
 
     private void Awake()
     {
-        fill = FindAnyObjectByType<CircularFill>();
-
         if (rocketButton != null)
         {
             StartCoroutine(StartCircularFill());
