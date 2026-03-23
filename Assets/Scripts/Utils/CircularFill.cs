@@ -37,7 +37,7 @@ public class CircularFill : MonoBehaviour
     {
         powerupImage.DOKill();
         powerupImage.color = Color.red;
-        powerupImage.DOColor(Color.gray, 0.3f); // Fade back to gray
+        powerupImage.DOColor(Color.gray, 0.3f); 
     }
 
     public void StartFill()
@@ -53,7 +53,7 @@ public class CircularFill : MonoBehaviour
         fillImage.fillAmount = 0f;
         isFilling = false;
         powerupImage.DOKill();
-        powerupImage.color = Color.gray; // ← Reset to gray on reset
+        powerupImage.color = Color.gray; 
     }
 
     public bool IsFull()

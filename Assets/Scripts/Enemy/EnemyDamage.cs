@@ -11,5 +11,10 @@ public class EnemyDamage : MonoBehaviour
             collision.GetComponent<PlayerHealth>().TakeDamage(damage);
             Destroy(gameObject);
         }
+
+        if(collision.CompareTag("Shield"))
+        {
+            GetComponent<EnemyHealth>().Die();
+        }
     }
 }
