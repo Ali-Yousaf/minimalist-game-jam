@@ -8,7 +8,7 @@ public class Shield : MonoBehaviour
     [SerializeField] private CircularFill fill; 
     [SerializeField] private Button shieldButton;
     [SerializeField] private GameObject playerShield;
-    [SerializeField] private float shieldDuration = 5f;
+    public float shieldDuration = 5f;
 
     private void Start()
     {

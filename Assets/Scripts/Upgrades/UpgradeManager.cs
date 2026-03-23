@@ -68,6 +68,13 @@ public class PlayerUpgradeManager : MonoBehaviour
         });
 
         allUpgrades.Add(new Upgrade {
+            upgradeName = "ARMOURER",
+            description = "Increase your shield duration.",
+            applyUpgrade = () => PlayerController.Instance.IncreaseShieldDuration()
+        });
+
+        
+        allUpgrades.Add(new Upgrade {
             upgradeName = "+1 Lasers",
             description = "Adds an extra bullet spawner",
             applyUpgrade = () => PlayerController.Instance.AddBulletSpawner()
@@ -77,6 +84,12 @@ public class PlayerUpgradeManager : MonoBehaviour
             upgradeName = "Rapid Fire",
             description = "Reduces cooldown further",
             applyUpgrade = () => PlayerController.Instance.ReduceFireCooldown(0.2f)
+        });
+
+        allUpgrades.Add(new Upgrade {
+            upgradeName = "BRICK WALL",
+            description = "Increase your shield duration.",
+            applyUpgrade = () => PlayerController.Instance.IncreaseShieldDuration()
         });
 
         allUpgrades.Add(new Upgrade {

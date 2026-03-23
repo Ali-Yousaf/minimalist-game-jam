@@ -181,4 +181,10 @@ public class PlayerController : MonoBehaviour
     {
         moveSpeed += amount;
     }
+
+    public void IncreaseShieldDuration()
+    {
+        var shield = FindFirstObjectByType<Shield>();
+        shield.shieldDuration += 5;
+    }
 }
