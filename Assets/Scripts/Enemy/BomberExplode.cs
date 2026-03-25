@@ -11,8 +11,8 @@ public class BomberExplode : MonoBehaviour
     [SerializeField] private AudioClip fastTick;
 
     [Header("Audio Settings")]
-    [SerializeField] private float fastTickDistanceThreshold = 5f;
-    [SerializeField] private float maxVolume = 1f;
+    [SerializeField] private float fastTickDistanceThreshold = 5f; 
+    [SerializeField] private float maxVolume = 0.1f;
 
     private AudioSource slowSource;
     private AudioSource fastSource;
@@ -65,22 +65,13 @@ public class BomberExplode : MonoBehaviour
 
         if (distance <= fastTickDistanceThreshold)
         {
-            // 🔴 FAST MODE
+            fastSource.volume = maxVolume;
             slowSource.volume = 0f;
-
-            float proximity = 1f - Mathf.Clamp01(distance / fastTickDistanceThreshold);
-
-            fastSource.volume = proximity * maxVolume;
         }
         else
         {
-            // 🟢 SLOW MODE
+            slowSource.volume = maxVolume;
             fastSource.volume = 0f;
-
-            // Optional: scale slow volume based on how close to threshold edge
-            float proximity = Mathf.Clamp01(1f - (distance / (fastTickDistanceThreshold * 2f)));
-
-            slowSource.volume = proximity * maxVolume;
         }
     }
 
@@ -97,7 +88,7 @@ public class BomberExplode : MonoBehaviour
         if (collision.CompareTag("Shield"))
         {
             Explode();
-            //GetComponent<EnemyHealth>().TakeDamage(1000);
+            GetComponent<EnemyHealth>().TakeDamage(1000);
         }
     }
 
@@ -115,6 +106,6 @@ public class BomberExplode : MonoBehaviour
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.explosionSFX);
 
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 1.5f);
     }
 }
