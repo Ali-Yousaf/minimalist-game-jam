@@ -1,20 +1,16 @@
 using UnityEngine;
 
-/// <summary>
-/// Centralises all PlayerPrefs keys.
-/// KillCounter calls these directly, but helper methods are still
-/// available for other systems (e.g. a stats screen reset button).
-/// </summary>
 public class PlayerPrefsManager : MonoBehaviour
 {
     private static PlayerPrefsManager Instance;
 
-    // ── Keys (public so KillCounter can reference them) ───────────
+    // KEYS
     public const string TotalKillKey    = "TotalKills";
     public const string SquareKillKey   = "SquareKills";
     public const string TriangleKillKey = "TriangleKills";
     public const string FastKillKey     = "FastKills";
     public const string TankKillKey     = "TankKills";
+    public const string BomberKillKey   = "BomberKills";
 
     private void Awake()
     {
@@ -45,7 +41,7 @@ public class PlayerPrefsManager : MonoBehaviour
     }
 
     // =========================
-    // INDIVIDUAL ENEMY KILLS
+    // ENEMY KILLS
     // =========================
 
     public static void SaveEnemyKills(KillCounter.EnemyType type, int amount)
@@ -67,7 +63,12 @@ public class PlayerPrefsManager : MonoBehaviour
             case KillCounter.EnemyType.Tank:
                 PlayerPrefs.SetInt(TankKillKey, amount);
                 break;
+
+            case KillCounter.EnemyType.Bomber:
+                PlayerPrefs.SetInt(BomberKillKey, amount);
+                break;
         }
+
         PlayerPrefs.Save();
     }
 
@@ -75,16 +76,17 @@ public class PlayerPrefsManager : MonoBehaviour
     {
         switch (type)
         {
-            case KillCounter.EnemyType.Square:   return PlayerPrefs.GetInt(SquareKillKey,   0);
+            case KillCounter.EnemyType.Square:   return PlayerPrefs.GetInt(SquareKillKey, 0);
             case KillCounter.EnemyType.Triangle: return PlayerPrefs.GetInt(TriangleKillKey, 0);
-            case KillCounter.EnemyType.Fast:     return PlayerPrefs.GetInt(FastKillKey,     0);
-            case KillCounter.EnemyType.Tank:     return PlayerPrefs.GetInt(TankKillKey,     0);
+            case KillCounter.EnemyType.Fast:     return PlayerPrefs.GetInt(FastKillKey, 0);
+            case KillCounter.EnemyType.Tank:     return PlayerPrefs.GetInt(TankKillKey, 0);
+            case KillCounter.EnemyType.Bomber:   return PlayerPrefs.GetInt(BomberKillKey, 0);
         }
         return 0;
     }
 
     // =========================
-    // RESET ALL
+    // RESET
     // =========================
 
     public static void ResetAllKills()
@@ -94,6 +96,8 @@ public class PlayerPrefsManager : MonoBehaviour
         PlayerPrefs.DeleteKey(TriangleKillKey);
         PlayerPrefs.DeleteKey(FastKillKey);
         PlayerPrefs.DeleteKey(TankKillKey);
+        PlayerPrefs.DeleteKey(BomberKillKey);
+
         PlayerPrefs.Save();
     }
 }

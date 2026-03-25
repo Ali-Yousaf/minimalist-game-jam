@@ -29,7 +29,8 @@ public class StatsUI : MonoBehaviour
         int triangle  = PlayerPrefsManager.LoadEnemyKills(KillCounter.EnemyType.Triangle);
         int fast      = PlayerPrefsManager.LoadEnemyKills(KillCounter.EnemyType.Fast);
         int tank      = PlayerPrefsManager.LoadEnemyKills(KillCounter.EnemyType.Tank);
-        int highScore = ScoreManager.GetHighScore(); 
+        int bomber    = PlayerPrefsManager.LoadEnemyKills(KillCounter.EnemyType.Bomber);
+        int highScore = ScoreManager.GetHighScore();
 
         statsText.text =
         $"<color={titleColor}><b>Player Stats</b></color>\n\n" +
@@ -38,6 +39,7 @@ public class StatsUI : MonoBehaviour
         $"<color={labelColor}>Square Kills:  </color><color={valueColor}>{square}</color>\n" +
         $"<color={labelColor}>Triangle Kills:  </color><color={valueColor}>{triangle}</color>\n" +
         $"<color={labelColor}>Fast Kills:  </color><color={valueColor}>{fast}</color>\n" +
-        $"<color={labelColor}>Tank Kills:  </color><color={valueColor}>{tank}</color>";
+        $"<color={labelColor}>Tank Kills:  </color><color={valueColor}>{tank}</color>\n" +
+        $"<color={labelColor}>Bomber Kills:  </color><color={valueColor}>{bomber}</color>";
     }
 }

@@ -19,6 +19,8 @@ public class PlayerHealth : MonoBehaviour
     private Color originalColor;
     private Vector3 originalPosition;
 
+    public bool isHitByBomber = false;
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -46,7 +48,16 @@ public class PlayerHealth : MonoBehaviour
         CameraShake.Instance.Shake(0.2f, 0.2f);
 
         if (PlayerController.Instance != null)
+        {
             PlayerController.Instance.killCounter--;
+
+            //bomber decreases kills/score by 5
+            if(isHitByBomber)
+            {
+                PlayerController.Instance.killCounter -= 4;
+                isHitByBomber = false;
+            }
+        }
 
         if (spriteRenderer != null)
             StartCoroutine(FlashRed());
