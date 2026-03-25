@@ -1414,7 +1414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7666272282157560907, guid: 646436b4b2084494397f787e66d689a3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3268,12 +3268,12 @@ MonoBehaviour:
     timer: 0
   - name: Bomber
     prefab: {fileID: 1376093192730435057, guid: ac43aa218f35a344cb33832895ec66db, type: 3}
-    baseSpawnInterval: 10
-    minSpawnInterval: 10
+    baseSpawnInterval: 15
+    minSpawnInterval: 15
     unlockKills: 0
     timer: 0
   mainCamera: {fileID: 519420031}
-  spawnOffset: 2
+  spawnOffset: 2.5
   spawningEnabled: 1
 --- !u!4 &1063931615
 Transform:
