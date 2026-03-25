@@ -8,6 +8,7 @@ TagManager:
   - FxTemporaire
   - MapBoundary
   - Shield
+  - ExplodeRadius
   layers:
   - Default
   - TransparentFX

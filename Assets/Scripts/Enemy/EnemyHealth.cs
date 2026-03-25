@@ -6,7 +6,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float maxHealth = 100f;
 
     [Header("Effects")]
-    [SerializeField] private ParticleSystem explodeParticle; // Assign CHILD particle here
+    [SerializeField] private ParticleSystem explodeParticle;
 
     [SerializeField] private KillCounter.EnemyType enemyType;
 
@@ -71,7 +71,6 @@ public class EnemyHealth : MonoBehaviour
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.explosionSFX);
 
-        // Register the kill — KillCounter handles saving to PlayerPrefs internally
         KillCounter.Instance.AddKill(enemyType);
         PlayerController.Instance.killCounter++;
         ScoreManager.SaveHighScore();
