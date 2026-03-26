@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6323742735482589218}
   - component: {fileID: 3828978786978623660}
   - component: {fileID: 5102538855746154613}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Subexplosion
   m_TagString: FxTemporaire
   m_Icon: {fileID: 0}
@@ -4813,7 +4813,7 @@ GameObject:
   - component: {fileID: 6530772473888459654}
   - component: {fileID: 1119711676335540108}
   - component: {fileID: 1987528786266111849}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fast Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -5021,7 +5021,7 @@ GameObject:
   - component: {fileID: 454182024495254002}
   - component: {fileID: 12873293993405508}
   - component: {fileID: 4149704973211033526}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: explosionParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

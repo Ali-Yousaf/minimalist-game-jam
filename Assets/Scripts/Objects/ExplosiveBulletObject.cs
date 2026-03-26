@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ExplosiveBulletObject : MonoBehaviour
@@ -5,6 +6,13 @@ public class ExplosiveBulletObject : MonoBehaviour
     public float speed = 5f;
     public float duration = 3f;
     [SerializeField] private int damage = 1000;
+    [SerializeField] private ParticleSystem explodeParticle;
+    [SerializeField] private ParticleSystem explodeParticle_x4;
+    [SerializeField] private ParticleSystem explodeParticle_y4;
+    [SerializeField] private ParticleSystem explodeParticle_xM4;
+    [SerializeField] private ParticleSystem explodeParticle_yM4;
+
+    [SerializeField] private float directionalExplosionDelay = 0.15f;
 
     void Start()
     {
@@ -22,10 +30,30 @@ public class ExplosiveBulletObject : MonoBehaviour
         {
             var health = collision.GetComponent<EnemyHealth>();
             if (health != null)
-            {
                 health.TakeDamage(damage);
-            }
-            Destroy(gameObject);
+            
+
+            GetComponent<SpriteRenderer>().enabled = false;
+            
+            explodeParticle.Play();
+            StartCoroutine(DirectionalParticles());
+
+            Destroy(gameObject, 3f);
         }
+    }
+
+    private IEnumerator DirectionalParticles()
+    {
+        explodeParticle_x4.Play();
+        yield return new WaitForSeconds(directionalExplosionDelay);
+
+        explodeParticle_y4.Play();
+        yield return new WaitForSeconds(directionalExplosionDelay);
+
+        explodeParticle_xM4.Play();
+        yield return new WaitForSeconds(directionalExplosionDelay);
+
+        explodeParticle_yM4.Play();
+        yield return new WaitForSeconds(directionalExplosionDelay);
     }
 }

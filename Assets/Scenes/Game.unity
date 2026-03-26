@@ -1419,7 +1419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7666272282157560907, guid: 646436b4b2084494397f787e66d689a3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3273,8 +3273,8 @@ MonoBehaviour:
     timer: 0
   - name: Bomber
     prefab: {fileID: 1376093192730435057, guid: ac43aa218f35a344cb33832895ec66db, type: 3}
-    baseSpawnInterval: 20
-    minSpawnInterval: 20
+    baseSpawnInterval: 17
+    minSpawnInterval: 17
     unlockKills: 0
     timer: 0
   mainCamera: {fileID: 519420031}
@@ -5635,7 +5635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::circularFill
   fillImage: {fileID: 1565205255}
   powerupImage: {fileID: 1788539992}
-  fillDuration: 35
+  fillDuration: 2
 --- !u!114 &1788539992
 MonoBehaviour:
   m_ObjectHideFlags: 0

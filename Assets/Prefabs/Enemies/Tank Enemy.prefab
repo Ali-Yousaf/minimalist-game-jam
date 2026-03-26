@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1867162910465005353}
   - component: {fileID: 4956666522677107838}
   - component: {fileID: 644039696723016921}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HealthBarCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 2234021215093297764}
   - component: {fileID: 7307417245154292227}
   - component: {fileID: 4311892455872110587}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1216373055093002280}
   - component: {fileID: 7586607137963319321}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: healthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 7011991481334492592}
   - component: {fileID: 6460933805564791446}
   - component: {fileID: 1376497431547236000}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Subexplosion
   m_TagString: FxTemporaire
   m_Icon: {fileID: 0}
@@ -5074,7 +5074,7 @@ GameObject:
   - component: {fileID: 4526468646466122022}
   - component: {fileID: 7711319460192745033}
   - component: {fileID: 7044871157209576098}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: explosionParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9887,7 +9887,7 @@ GameObject:
   - component: {fileID: 7713804385178556141}
   - component: {fileID: 5182803766908624527}
   - component: {fileID: 8621223272692121732}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tank Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}

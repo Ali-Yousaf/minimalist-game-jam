@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6604277617405781759}
   - component: {fileID: 3905154149667326874}
   - component: {fileID: 8908591626260676425}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bomber
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -214,6 +214,7 @@ MonoBehaviour:
   fastTick: {fileID: 8300000, guid: f0e8a4233192ea842bc9f3a290e2fe0f, type: 3}
   fastTickDistanceThreshold: 15
   maxVolume: 0.1
+  healthBarCanvas: {fileID: 0}
 --- !u!114 &3905154149667326874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,7 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6988281110984780054}
   - component: {fileID: 5214396959554977814}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: healthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +425,7 @@ GameObject:
   - component: {fileID: 4710766756436621477}
   - component: {fileID: 8317091542084415605}
   - component: {fileID: 6049134843610302556}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'explosionParticle '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5233,7 +5234,7 @@ GameObject:
   - component: {fileID: 4554629086789642435}
   - component: {fileID: 108954463168260463}
   - component: {fileID: 6642385260818121029}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HealthBarCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5334,7 +5335,7 @@ GameObject:
   - component: {fileID: 3289432415906009818}
   - component: {fileID: 7363919779300643961}
   - component: {fileID: 1820089133185707484}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Subexplosion
   m_TagString: FxTemporaire
   m_Icon: {fileID: 0}
@@ -10132,7 +10133,7 @@ GameObject:
   - component: {fileID: 5864319791861232525}
   - component: {fileID: 5212165680760463705}
   - component: {fileID: 606072383925881604}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
