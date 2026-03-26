@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject explosiveBulletsPrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private float fireCooldown = 0.2f;
+    [SerializeField] private float explosiveFireCooldown = 0.5f;
     public bool explosiveBulletsEnabled = false;
     private GameObject laserPrefabToSpawn;
 
@@ -105,8 +106,11 @@ public class PlayerController : MonoBehaviour
 
     private void ShootAt(Vector2 screenPosition)
     {
+        // Use appropriate cooldown
+        float currentCooldown = explosiveBulletsEnabled ? explosiveFireCooldown : fireCooldown;
+
         if (fireTimer > 0f) return;
-        fireTimer = fireCooldown;
+        fireTimer = currentCooldown; 
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.laserShootSFX);
 
@@ -118,11 +122,7 @@ public class PlayerController : MonoBehaviour
 
         firePoint.rotation = Quaternion.Euler(0f, 0f, angle);
 
-        if(explosiveBulletsEnabled)
-            laserPrefabToSpawn = explosiveBulletsPrefab;
-
-        else
-            laserPrefabToSpawn = laserPrefab;        
+        laserPrefabToSpawn = explosiveBulletsEnabled ? explosiveBulletsPrefab : laserPrefab;
 
         switch (currentBulletSpawners)
         {

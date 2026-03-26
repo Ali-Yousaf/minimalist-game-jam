@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -13,6 +14,7 @@ public class BomberExplode : MonoBehaviour
     [Header("Audio Settings")]
     [SerializeField] private float fastTickDistanceThreshold = 5f; 
     [SerializeField] private float maxVolume = 0.1f;
+    [SerializeField] private Canvas healthBarCanvas;
 
     private AudioSource slowSource;
     private AudioSource fastSource;
@@ -41,6 +43,7 @@ public class BomberExplode : MonoBehaviour
     private void Start()
     {
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        healthBarCanvas = GetComponentInChildren<Canvas>();
 
         if (playerObj != null)
         {
@@ -100,6 +103,9 @@ public class BomberExplode : MonoBehaviour
         fastSource.Stop();
 
         GetComponent<SpriteRenderer>().enabled = false;
+        healthBarCanvas.enabled = false;
+        CameraShake.Instance.Shake(0.2f, 0.2f);
+        GridJuiceFX.Instance.Flash();
 
         if (explosionParticle != null)
             explosionParticle.Play();
