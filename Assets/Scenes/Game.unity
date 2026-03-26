@@ -4343,8 +4343,10 @@ MonoBehaviour:
   moveSpeed: 5
   mapBoundary: {fileID: 568231475}
   laserPrefab: {fileID: 8427297716581848329, guid: 06554172fc7708e45ba9d363167ca70f, type: 3}
+  explosiveBulletsPrefab: {fileID: 0}
   firePoint: {fileID: 273186347}
   fireCooldown: 0.47
+  explosiveBulletsEnabled: 0
   killCounter: 0
   laserDamage: 25
   maxBulletSpawners: 10
@@ -5606,9 +5608,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1802778007}
-        m_TargetAssemblyTypeName: Shield, Assembly-CSharp
-        m_MethodName: ActivateShield
+      - m_Target: {fileID: 1802778008}
+        m_TargetAssemblyTypeName: ExplosiveBullet, Assembly-CSharp
+        m_MethodName: EnableExplosiveBullets
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5632,7 +5634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::circularFill
   fillImage: {fileID: 1565205255}
   powerupImage: {fileID: 1788539992}
-  fillDuration: 30
+  fillDuration: 50
 --- !u!114 &1788539992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5686,6 +5688,7 @@ GameObject:
   - component: {fileID: 1802778004}
   - component: {fileID: 1802778006}
   - component: {fileID: 1802778007}
+  - component: {fileID: 1802778008}
   m_Layer: 0
   m_Name: GAME MANAGER
   m_TagString: Untagged
@@ -5806,6 +5809,21 @@ MonoBehaviour:
   shieldButton: {fileID: 1190454042}
   playerShield: {fileID: 1665767334}
   shieldDuration: 5
+--- !u!114 &1802778008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802778000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b89b373bb4c0544789a32950deb5fef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplosiveBullet
+  fill: {fileID: 1788539991}
+  button: {fileID: 1788539990}
+  bulletsDuration: 10
 --- !u!1 &1856406775
 GameObject:
   m_ObjectHideFlags: 0

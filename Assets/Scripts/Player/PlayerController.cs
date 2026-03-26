@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -14,8 +15,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("Shooting")]
     [SerializeField] private GameObject laserPrefab;
+    [SerializeField] private GameObject explosiveBulletsPrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private float fireCooldown = 0.2f;
+    public bool explosiveBulletsEnabled = false;
+
 
     [Header("Player Stats")]
     public int killCounter = 0;
@@ -113,6 +117,11 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         firePoint.rotation = Quaternion.Euler(0f, 0f, angle);
+
+        if(explosiveBulletsEnabled)
+        {
+            laserPrefab = explosiveBulletsPrefab;
+        }
 
         switch (currentBulletSpawners)
         {
