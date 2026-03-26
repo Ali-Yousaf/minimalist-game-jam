@@ -3358,7 +3358,7 @@ MonoBehaviour:
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 0
-  m_FillClockwise: 1
+  m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.01
@@ -4343,7 +4343,7 @@ MonoBehaviour:
   moveSpeed: 5
   mapBoundary: {fileID: 568231475}
   laserPrefab: {fileID: 8427297716581848329, guid: 06554172fc7708e45ba9d363167ca70f, type: 3}
-  explosiveBulletsPrefab: {fileID: 0}
+  explosiveBulletsPrefab: {fileID: 3061129653294816470, guid: c55525a2508bb084d839418b9576ded1, type: 3}
   firePoint: {fileID: 273186347}
   fireCooldown: 0.47
   explosiveBulletsEnabled: 0
@@ -5634,7 +5634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::circularFill
   fillImage: {fileID: 1565205255}
   powerupImage: {fileID: 1788539992}
-  fillDuration: 50
+  fillDuration: 35
 --- !u!114 &1788539992
 MonoBehaviour:
   m_ObjectHideFlags: 0

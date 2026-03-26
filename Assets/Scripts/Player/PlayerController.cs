@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private float fireCooldown = 0.2f;
     public bool explosiveBulletsEnabled = false;
-
+    private GameObject laserPrefabToSpawn;
 
     [Header("Player Stats")]
     public int killCounter = 0;
@@ -119,29 +119,30 @@ public class PlayerController : MonoBehaviour
         firePoint.rotation = Quaternion.Euler(0f, 0f, angle);
 
         if(explosiveBulletsEnabled)
-        {
-            laserPrefab = explosiveBulletsPrefab;
-        }
+            laserPrefabToSpawn = explosiveBulletsPrefab;
+
+        else
+            laserPrefabToSpawn = laserPrefab;        
 
         switch (currentBulletSpawners)
         {
             case 1:
-                Instantiate(laserPrefab, firePoint.position, firePoint.rotation);
+                Instantiate(laserPrefabToSpawn, firePoint.position, firePoint.rotation);
                 break;
 
             case 2:
-                Instantiate(laserPrefab, firePoint.position, firePoint.rotation);
-                Instantiate(laserPrefab, firePoint.position,
+                Instantiate(laserPrefabToSpawn, firePoint.position, firePoint.rotation);
+                Instantiate(laserPrefabToSpawn, firePoint.position,
                     firePoint.rotation * Quaternion.Euler(0, 0, 180f));
                 break;
 
             case 4:
-                Instantiate(laserPrefab, firePoint.position, firePoint.rotation);
-                Instantiate(laserPrefab, firePoint.position,
+                Instantiate(laserPrefabToSpawn, firePoint.position, firePoint.rotation);
+                Instantiate(laserPrefabToSpawn, firePoint.position,
                     firePoint.rotation * Quaternion.Euler(0, 0, 180f));
-                Instantiate(laserPrefab, firePoint.position,
+                Instantiate(laserPrefabToSpawn, firePoint.position,
                     firePoint.rotation * Quaternion.Euler(0, 0, 90f));
-                Instantiate(laserPrefab, firePoint.position,
+                Instantiate(laserPrefabToSpawn, firePoint.position,
                     firePoint.rotation * Quaternion.Euler(0, 0, -90f));
                 break;
 
@@ -149,7 +150,7 @@ public class PlayerController : MonoBehaviour
                 for (int i = 0; i < currentBulletSpawners; i++)
                 {
                     float spread = 360f / currentBulletSpawners * i;
-                    Instantiate(laserPrefab, firePoint.position,
+                    Instantiate(laserPrefabToSpawn, firePoint.position,
                         firePoint.rotation * Quaternion.Euler(0, 0, spread));
                 }
                 break;

@@ -47,9 +47,8 @@ public class ExplosiveBullet : MonoBehaviour
     {
         PlayerController.Instance.explosiveBulletsEnabled = true;
         yield return new WaitForSeconds(bulletsDuration);
+        
         PlayerController.Instance.explosiveBulletsEnabled = false;
-
         fill.StartFill();
     }
-
 }
