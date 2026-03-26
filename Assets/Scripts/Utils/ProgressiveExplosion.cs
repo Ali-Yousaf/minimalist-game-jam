@@ -4,7 +4,7 @@ using System.Collections;
 public class ProgressiveExplosion : MonoBehaviour
 {
     public float maxRadius = 5f;
-    public float expansionTime = 1f;
+    public float expansionTime = 0.5f;
     public int damage = 50;
     public LayerMask enemyLayer;
 
@@ -43,8 +43,5 @@ public class ProgressiveExplosion : MonoBehaviour
 
             yield return null;
         }
-
-        // Optional: Destroy explosion object after finished
-        Destroy(gameObject, 0.5f);
     }
 }
