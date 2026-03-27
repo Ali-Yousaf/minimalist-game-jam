@@ -11,7 +11,6 @@ public class TankBoss : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform[] spawnPoints;
-    [SerializeField] private SpriteRenderer bodyRenderer;
 
     private Transform player;
     private Rigidbody2D rb;
@@ -27,31 +26,23 @@ public class TankBoss : MonoBehaviour
 
     [Header("Visuals")]
     [SerializeField] private float gunRotationOffset = -90f;
-    [SerializeField] private Color flashColor = Color.red;
-    [SerializeField] private float flashDuration = 0.1f;
 
-    [Header("Recoil Effect")]
-    [SerializeField] private float recoilForce = 2f;
-    [SerializeField] private float recoilDuration = 0.05f;
+    [Header("Scale Punch")]
     [SerializeField] private float scaleMultiplier = 1.15f;
-    [SerializeField] private float scaleReturnSpeed = 20f;
+    [SerializeField] private float scaleUpDuration = 0.05f;
+    [SerializeField] private float scaleDownDuration = 0.1f;
 
     private Vector2 targetPosition;
     private int currentSpawnIndex = -1;
     private bool isAttacking = false;
 
-    private Color originalColor;
     private Vector3 originalScale;
-
-    private Coroutine recoilRoutine;
+    private Coroutine scalePunchRoutine;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        if (bodyRenderer != null)
-            originalColor = bodyRenderer.color;
 
         originalScale = transform.localScale;
 
@@ -101,9 +92,7 @@ public class TankBoss : MonoBehaviour
     {
         isAttacking = true;
         currentState = TankState.Attack;
-
-        // 🔥 Telegraph (flash before attack)
-        yield return StartCoroutine(FlashEffect());
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
 
         yield return new WaitForSeconds(0.1f);
 
@@ -113,13 +102,13 @@ public class TankBoss : MonoBehaviour
             yield return new WaitForSeconds(fireRate);
         }
 
-        // 💥 BIG pushback after burst
         yield return StartCoroutine(PushBack());
 
         currentState = TankState.Retreat;
         PickNewSpawn();
 
         isAttacking = false;
+        rb.constraints = RigidbodyConstraints2D.None;
     }
 
     // =============================
@@ -173,60 +162,40 @@ public class TankBoss : MonoBehaviour
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
-        // 🎥 Camera shake
-        CameraShake.Instance?.Shake(0.05f, 0.1f);
+        CameraShake.Instance?.Shake(0.25f, 0.25f);
 
-        // 💥 Recoil punch (no overlap)
-        if (recoilRoutine != null)
-            StopCoroutine(recoilRoutine);
+        if (scalePunchRoutine != null)
+            StopCoroutine(scalePunchRoutine);
 
-        recoilRoutine = StartCoroutine(RecoilEffect());
+        scalePunchRoutine = StartCoroutine(ScalePunch());
     }
 
     // =============================
-    // RECOIL EFFECT (NEW 🔥)
+    // SCALE PUNCH
     // =============================
-    private IEnumerator RecoilEffect()
+    private IEnumerator ScalePunch()
     {
-        float timer = 0f;
+        Vector3 bigScale = originalScale * scaleMultiplier;
 
-        Vector2 dirAway = (transform.position - player.position).normalized;
-
-        // instant scale up
-        transform.localScale = originalScale * scaleMultiplier;
-
-        while (timer < recoilDuration)
-        {
-            rb.linearVelocity = dirAway * recoilForce;
-
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        rb.linearVelocity = Vector2.zero;
-
-        // smooth snap back
+        // Scale up
         float t = 0f;
-        while (Vector3.Distance(transform.localScale, originalScale) > 0.01f)
+        while (t < 1f)
         {
-            transform.localScale = Vector3.Lerp(transform.localScale, originalScale, t);
-            t += Time.deltaTime * scaleReturnSpeed;
+            t += Time.deltaTime / scaleUpDuration;
+            transform.localScale = Vector3.Lerp(originalScale, bigScale, t);
             yield return null;
         }
+        transform.localScale = bigScale;
 
+        // Scale down
+        t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / scaleDownDuration;
+            transform.localScale = Vector3.Lerp(bigScale, originalScale, t);
+            yield return null;
+        }
         transform.localScale = originalScale;
-    }
-
-    // =============================
-    // FLASH EFFECT
-    // =============================
-    private IEnumerator FlashEffect()
-    {
-        if (bodyRenderer == null) yield break;
-
-        bodyRenderer.color = flashColor;
-        yield return new WaitForSeconds(flashDuration);
-        bodyRenderer.color = originalColor;
     }
 
     // =============================
@@ -239,7 +208,7 @@ public class TankBoss : MonoBehaviour
         do
         {
             newIndex = Random.Range(0, spawnPoints.Length);
-        
+
         } while (newIndex == currentSpawnIndex);
 
         currentSpawnIndex = newIndex;
@@ -252,7 +221,7 @@ public class TankBoss : MonoBehaviour
     }
 
     // =============================
-    // PUSHBACK (BIG ONE)
+    // PUSHBACK
     // =============================
     private IEnumerator PushBack()
     {
@@ -261,7 +230,7 @@ public class TankBoss : MonoBehaviour
 
         Vector2 dirAway = (transform.position - player.position).normalized;
 
-        CameraShake.Instance?.Shake(0.25f, 0.25f);
+        CameraShake.Instance?.Shake(0.5f, 0.5f);
 
         while (timer < pushTime)
         {
