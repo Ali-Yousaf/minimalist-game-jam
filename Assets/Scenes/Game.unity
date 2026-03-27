@@ -3417,25 +3417,25 @@ MonoBehaviour:
     prefab: {fileID: 6123814326354528551, guid: 45da8ce30a702f94f9b4381d2ff9885e, type: 3}
     baseSpawnInterval: 3
     minSpawnInterval: 0.5
-    unlockKills: -100
+    unlockKills: -99999
     timer: 0
   - name: Triangle
     prefab: {fileID: 2668340509205166784, guid: 8adb9e2ebce7615488908e101cc006bc, type: 3}
-    baseSpawnInterval: 6
-    minSpawnInterval: 1
-    unlockKills: 18
+    baseSpawnInterval: 10
+    minSpawnInterval: 3
+    unlockKills: 25
     timer: 0
   - name: Fast
     prefab: {fileID: 3647255928694127348, guid: 39d5a55f83b020f47b004b80b39f394f, type: 3}
-    baseSpawnInterval: 9
-    minSpawnInterval: 2
-    unlockKills: 25
+    baseSpawnInterval: 16
+    minSpawnInterval: 5
+    unlockKills: 60
     timer: 0
   - name: Tank
     prefab: {fileID: 8633769928005690774, guid: f9f0970088bc6f94494e5043c4b6475f, type: 3}
-    baseSpawnInterval: 15
-    minSpawnInterval: 4
-    unlockKills: 50
+    baseSpawnInterval: 24
+    minSpawnInterval: 8
+    unlockKills: 120
     timer: 0
   - name: Bomber
     prefab: {fileID: 1376093192730435057, guid: ac43aa218f35a344cb33832895ec66db, type: 3}
@@ -4310,7 +4310,7 @@ MonoBehaviour:
   fill: {fileID: 1190454043}
   shieldButton: {fileID: 1190454042}
   playerShield: {fileID: 1665767334}
-  shieldDuration: 5
+  shieldDuration: 10
 --- !u!114 &1280286424
 MonoBehaviour:
   m_ObjectHideFlags: 0

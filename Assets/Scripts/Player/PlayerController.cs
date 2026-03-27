@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
         dashCooldownTimer -= Time.deltaTime;
 
         // Start dash
-        if (Input.GetKeyDown(KeyCode.E) && dashCooldownTimer <= 0f && !isDashing)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldownTimer <= 0f && !isDashing)
         {
             print("Dashing");
             Vector2 inputDir = new Vector2(
@@ -267,6 +267,6 @@ public class PlayerController : MonoBehaviour
     public void IncreaseShieldDuration()
     {
         var shield = FindFirstObjectByType<Shield>();
-        shield.shieldDuration += 5;
+        shield.shieldDuration += 7;
     }
 }
