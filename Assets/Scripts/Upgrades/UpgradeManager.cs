@@ -68,11 +68,16 @@ public class PlayerUpgradeManager : MonoBehaviour
         });
 
         allUpgrades.Add(new Upgrade {
-            upgradeName = "ARMOURER",
+            upgradeName = "Armourer",
             description = "Increase your shield duration.",
             applyUpgrade = () => PlayerController.Instance.IncreaseShieldDuration()
         });
 
+        allUpgrades.Add(new Upgrade {
+            upgradeName = "DASH = TRUE",
+            description = "You can now dash around.",
+            applyUpgrade = () => PlayerController.Instance.EnableDash()
+        });
         
         allUpgrades.Add(new Upgrade {
             upgradeName = "+1 Lasers",

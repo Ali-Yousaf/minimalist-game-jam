@@ -7,8 +7,20 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private bool canMove = false;
+    [SerializeField] private bool canDash = false;
     private Rigidbody2D rb;
     private Vector2 movement;
+
+    [Header("Dash Settings")]
+    [SerializeField] private float dashForce = 15f;
+    [SerializeField] private float dashDuration = 0.15f;
+    [SerializeField] private float dashCooldown = 1f;
+
+    private bool isDashing = false;
+    private float dashTimer;
+    private float dashCooldownTimer;
+    private Vector2 dashDirection;
 
     [Header("Boundary Settings")]
     [SerializeField] private PolygonCollider2D mapBoundary;
@@ -29,7 +41,6 @@ public class PlayerController : MonoBehaviour
     public int currentBulletSpawners = 1;
 
     private float fireTimer;
-    [SerializeField] private bool canMove = false;
 
     void Awake()
     {
@@ -46,6 +57,7 @@ public class PlayerController : MonoBehaviour
         fireTimer -= Time.deltaTime;
 
         HandleMovementInput();
+        HandleDash();
 
         if (Input.GetMouseButton(0))
             ShootAt(Input.mousePosition);
@@ -62,8 +74,10 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        Vector2 newPosition = rb.position + movement * moveSpeed * Time.fixedDeltaTime;
+        // If dashing, skip normal movement
+        if (isDashing) return;
 
+        Vector2 newPosition = rb.position + movement * moveSpeed * Time.fixedDeltaTime;
         newPosition = ClampInsideBoundary(newPosition);
 
         rb.MovePosition(newPosition);
@@ -98,6 +112,59 @@ public class PlayerController : MonoBehaviour
         float clampedY = Mathf.Clamp(targetPos.y, bounds.min.y, bounds.max.y);
 
         return new Vector2(clampedX, clampedY);
+    }
+
+    // =============================
+    // Dashing
+    // =============================
+
+    private void HandleDash()
+    {
+        //if (!canMove || !canDash) return;
+
+        dashCooldownTimer -= Time.deltaTime;
+
+        // Start dash
+        if (Input.GetKeyDown(KeyCode.E) && dashCooldownTimer <= 0f && !isDashing)
+        {
+            print("Dashing");
+            Vector2 inputDir = new Vector2(
+                Input.GetAxisRaw("Horizontal"),
+                Input.GetAxisRaw("Vertical")
+            ).normalized;
+
+            // If no input, dash forward (current movement direction)
+            if (inputDir == Vector2.zero)
+            {
+                if (movement != Vector2.zero)
+                    dashDirection = movement.normalized;
+                
+                else
+                    dashDirection = transform.right; // fallback direction
+            }
+
+            else
+            {
+                dashDirection = inputDir;
+            }
+
+            isDashing = true;
+            dashTimer = dashDuration;
+            dashCooldownTimer = dashCooldown;
+        }
+
+        // During dash
+        if (isDashing)
+        {
+            dashTimer -= Time.deltaTime;
+
+            rb.linearVelocity = dashDirection * dashForce;
+
+            if (dashTimer <= 0f)
+            {
+                isDashing = false;
+            }
+        }
     }
 
     // =============================
@@ -185,6 +252,11 @@ public class PlayerController : MonoBehaviour
     public void EnableMovement()
     {
         canMove = true;
+    }
+
+    public void EnableDash()
+    {
+        canDash = true;
     }
 
     public void IncreaseMovementSpeed(float amount)
