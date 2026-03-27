@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleDash()
     {
-        //if (!canMove || !canDash) return;
+        if (!canMove || !canDash) return;
 
         dashCooldownTimer -= Time.deltaTime;
 
