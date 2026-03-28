@@ -16,7 +16,7 @@ public class TankBoss : MonoBehaviour
     private Rigidbody2D rb;
 
     [Header("Movement")]
-    [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float retreatSpeed = 2f;
     [SerializeField] private float enterDistance = 3f;
 
