@@ -92,6 +92,9 @@ public class TankBoss : MonoBehaviour
     {
         isAttacking = true;
         currentState = TankState.Attack;
+
+        // Stop movement while shooting
+        rb.linearVelocity = Vector2.zero;
         rb.constraints = RigidbodyConstraints2D.FreezePosition;
 
         yield return new WaitForSeconds(0.1f);
@@ -102,13 +105,13 @@ public class TankBoss : MonoBehaviour
             yield return new WaitForSeconds(fireRate);
         }
 
-        yield return StartCoroutine(PushBack());
+        // Unlock movement
+        rb.constraints = RigidbodyConstraints2D.None;
 
+        // Go to retreat (NO teleport)
         currentState = TankState.Retreat;
-        PickNewSpawn();
 
         isAttacking = false;
-        rb.constraints = RigidbodyConstraints2D.None;
     }
 
     // =============================
@@ -122,6 +125,7 @@ public class TankBoss : MonoBehaviour
 
         if (Vector2.Distance(transform.position, spawn.position) < 0.2f)
         {
+            // Once reached original spawn → pick new one
             PickNewSpawn();
             currentState = TankState.Enter;
         }
@@ -162,7 +166,7 @@ public class TankBoss : MonoBehaviour
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
-        CameraShake.Instance?.Shake(0.25f, 0.25f);
+        CameraShake.Instance?.Shake(0.2f, 0.2f);
 
         if (scalePunchRoutine != null)
             StopCoroutine(scalePunchRoutine);
@@ -171,13 +175,12 @@ public class TankBoss : MonoBehaviour
     }
 
     // =============================
-    // SCALE PUNCH
+    // SCALE PUNCH (visual only)
     // =============================
     private IEnumerator ScalePunch()
     {
         Vector3 bigScale = originalScale * scaleMultiplier;
 
-        // Scale up
         float t = 0f;
         while (t < 1f)
         {
@@ -185,9 +188,9 @@ public class TankBoss : MonoBehaviour
             transform.localScale = Vector3.Lerp(originalScale, bigScale, t);
             yield return null;
         }
+
         transform.localScale = bigScale;
 
-        // Scale down
         t = 0f;
         while (t < 1f)
         {
@@ -195,6 +198,7 @@ public class TankBoss : MonoBehaviour
             transform.localScale = Vector3.Lerp(bigScale, originalScale, t);
             yield return null;
         }
+
         transform.localScale = originalScale;
     }
 
@@ -208,8 +212,8 @@ public class TankBoss : MonoBehaviour
         do
         {
             newIndex = Random.Range(0, spawnPoints.Length);
-
-        } while (newIndex == currentSpawnIndex);
+        }
+        while (newIndex == currentSpawnIndex);
 
         currentSpawnIndex = newIndex;
 
@@ -218,27 +222,5 @@ public class TankBoss : MonoBehaviour
 
         Vector2 dirToPlayer = (player.position - transform.position).normalized;
         targetPosition = (Vector2)spawn.position + dirToPlayer * enterDistance;
-    }
-
-    // =============================
-    // PUSHBACK
-    // =============================
-    private IEnumerator PushBack()
-    {
-        float pushTime = 0.2f;
-        float timer = 0f;
-
-        Vector2 dirAway = (transform.position - player.position).normalized;
-
-        CameraShake.Instance?.Shake(0.5f, 0.5f);
-
-        while (timer < pushTime)
-        {
-            rb.linearVelocity = dirAway * (retreatSpeed * 2f);
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        rb.linearVelocity = Vector2.zero;
     }
 }
