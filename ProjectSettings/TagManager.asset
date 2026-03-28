@@ -9,6 +9,7 @@ TagManager:
   - MapBoundary
   - Shield
   - ExplodeRadius
+  - Tank
   layers:
   - Default
   - TransparentFX
