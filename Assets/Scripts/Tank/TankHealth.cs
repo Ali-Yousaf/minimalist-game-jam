@@ -2,15 +2,42 @@ using UnityEngine;
 
 public class TankHealth : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private float maxHealth = 1000f;
+    [SerializeField] private TankHealthBar healthBar;
+
+    private float currentHealth;
+
+    private void Start()
     {
-        
+        currentHealth = maxHealth;
+
+        if (healthBar != null)
+            healthBar.SetMaxHealth(maxHealth);
     }
 
-    // Update is called once per frame
-    void Update()
+    // =============================
+    // TAKE DAMAGE
+    // =============================
+    public void TakeDamage(float amount)
     {
-        
+        currentHealth -= amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+
+        if (healthBar != null)
+            healthBar.SetHealth(currentHealth);
+
+        if (currentHealth <= 0f)
+        {
+            Die();
+        }
+    }
+
+    // =============================
+    // DIE
+    // =============================
+    private void Die()
+    {
+        print("Tank Exploded");
+        Destroy(gameObject, 1f);
     }
 }

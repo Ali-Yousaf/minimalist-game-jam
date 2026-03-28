@@ -29,5 +29,16 @@ public class Laser : MonoBehaviour
             }
             Destroy(gameObject);
         }
+
+        if(collision.CompareTag("Tank"))
+        {
+            var health = collision.GetComponent<TankHealth>();
+            if(health != null)
+            {
+                health.TakeDamage(damage);
+            }
+
+            Destroy(gameObject);
+        }
     }
 }

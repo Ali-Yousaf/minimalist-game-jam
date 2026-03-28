@@ -3184,9 +3184,11 @@ GameObject:
   - component: {fileID: 673872452}
   - component: {fileID: 673872451}
   - component: {fileID: 673872453}
+  - component: {fileID: 673872455}
+  - component: {fileID: 673872454}
   m_Layer: 0
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3200,7 +3202,7 @@ Transform:
   m_GameObject: {fileID: 673872449}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.1, y: -0.4, z: 0}
+  m_LocalPosition: {x: -14.1, y: 31.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3265,7 +3267,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -3295,11 +3297,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TankMovement
   gun: {fileID: 1322931401}
   firePoint: {fileID: 2049847038}
-  bulletPrefab: {fileID: 3061129653294816470, guid: c55525a2508bb084d839418b9576ded1, type: 3}
+  bulletPrefab: {fileID: 9161396187457608814, guid: d101f6b1f25bc714890ecd27d0dedb05, type: 3}
   spawnPoints:
   - {fileID: 602603679}
   - {fileID: 1145935924}
-  - {fileID: 0}
   - {fileID: 1244135486}
   moveSpeed: 2
   retreatSpeed: 3
@@ -3310,6 +3311,34 @@ MonoBehaviour:
   scaleMultiplier: 1.15
   scaleUpDuration: 0.05
   scaleDownDuration: 0.1
+--- !u!114 &673872454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673872449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82afb96481d423147b11340e910e8e08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TankHealth
+  maxHealth: 50
+  healthBar: {fileID: 673872455}
+--- !u!114 &673872455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673872449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc71cac0a53a97458ca52c5170d9859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TankHealthBar
+  slider: {fileID: 2135717062}
+  lerpSpeed: 5
 --- !u!1 &708928630
 GameObject:
   m_ObjectHideFlags: 0
@@ -7818,7 +7847,7 @@ RectTransform:
   m_GameObject: {fileID: 2135717060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.87626, y: 0.87626, z: 0.87626}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 985037922}
@@ -7828,7 +7857,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -217}
+  m_AnchoredPosition: {x: 0, y: -186.12}
   m_SizeDelta: {x: 1636.1, y: 34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2135717062
@@ -7876,7 +7905,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1000
+  m_MaxValue: 2000
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:

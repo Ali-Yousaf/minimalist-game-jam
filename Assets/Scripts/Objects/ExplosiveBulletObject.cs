@@ -1,11 +1,12 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ExplosiveBulletObject : MonoBehaviour
 {
     public float speed = 5f;
     public float duration = 3f;
-    [SerializeField] private int damage = 1000;
+    [SerializeField] private int damage = 100;
     [SerializeField] private ParticleSystem explodeParticle;
     [SerializeField] private ParticleSystem explodeParticle_x4;
     [SerializeField] private ParticleSystem explodeParticle_y4;
@@ -32,6 +33,18 @@ public class ExplosiveBulletObject : MonoBehaviour
             if (health != null)
                 health.TakeDamage(damage);
             
+
+            GetComponent<SpriteRenderer>().enabled = false;
+            
+            explodeParticle.Play();
+            StartCoroutine(DirectionalParticles());
+
+            Destroy(gameObject, 3f);
+        }
+
+        if(collision.CompareTag("Tank"))
+        {
+            collision.GetComponent<TankHealth>()?.TakeDamage(damage);
 
             GetComponent<SpriteRenderer>().enabled = false;
             
