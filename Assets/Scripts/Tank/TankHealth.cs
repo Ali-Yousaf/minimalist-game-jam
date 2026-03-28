@@ -38,6 +38,7 @@ public class TankHealth : MonoBehaviour
     private void Die()
     {
         print("Tank Exploded");
+        BossFightManager.Instance.BossDied();
         Destroy(gameObject, 1f);
     }
 }

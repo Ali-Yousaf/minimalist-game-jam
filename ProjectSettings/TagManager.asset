@@ -10,6 +10,7 @@ TagManager:
   - Shield
   - ExplodeRadius
   - Tank
+  - Spawner
   layers:
   - Default
   - TransparentFX
