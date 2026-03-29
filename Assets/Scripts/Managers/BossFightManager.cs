@@ -6,7 +6,7 @@ public class BossFightManager : MonoBehaviour
 
     [SerializeField] private Spawner spawner;
     [SerializeField] private bool bossFightEnabled = false;
-
+    [SerializeField] private int killCouterThreshold = 501;
     [SerializeField] private GameObject tank;
     [SerializeField] private GameObject tankHealthBar;
 
@@ -31,13 +31,10 @@ public class BossFightManager : MonoBehaviour
 
     private void Update()
     {
-        if (!bossSpawned && PlayerController.Instance.killCounter >= 500)
+        if (!bossSpawned && PlayerController.Instance.killCounter >= killCouterThreshold)
         {
             EnableBossFight();
-
-            if (spawner != null)
-                spawner.spawningEnabled = false;
-
+            spawner.spawningEnabled = false;
             bossSpawned = true; 
         }
     }
