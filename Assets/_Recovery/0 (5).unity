@@ -3290,11 +3290,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &827844459 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 996846869327459037, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-  m_PrefabInstance: {fileID: 1562127658}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &882404522
 GameObject:
   m_ObjectHideFlags: 0
@@ -5493,83 +5488,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!1001 &1562127658
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 996846869327459037, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-      propertyPath: m_Name
-      value: Tank
-      objectReference: {fileID: 0}
-    - target: {fileID: 996846869327459037, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908075971917564245, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -41.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908075971917564245, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908075971917564245, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908075971917564245, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908075971917564245, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908075971917564245, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908075971917564245, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908075971917564245, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908075971917564245, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908075971917564245, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7304276595561379552, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-      propertyPath: 'spawnPoints.Array.data[0]'
-      value: 
-      objectReference: {fileID: 602603679}
-    - target: {fileID: 7304276595561379552, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-      propertyPath: 'spawnPoints.Array.data[1]'
-      value: 
-      objectReference: {fileID: 1145935924}
-    - target: {fileID: 7304276595561379552, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-      propertyPath: 'spawnPoints.Array.data[2]'
-      value: 
-      objectReference: {fileID: 1244135486}
-    - target: {fileID: 8891481360949770094, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-      propertyPath: slider
-      value: 
-      objectReference: {fileID: 2135717062}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
 --- !u!1 &1565205253
 GameObject:
   m_ObjectHideFlags: 0
@@ -6446,7 +6364,7 @@ Transform:
   m_GameObject: {fileID: 1802778000}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 21.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6518,9 +6436,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec2685de6b9ae92419541fe1583d15cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossFightManager
-  spawner: {fileID: 1063931614}
+  spawer: {fileID: 1063931614}
   bossFightEnabled: 0
-  tank: {fileID: 827844459}
+  tankPrefab: {fileID: 996846869327459037, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
   tankHealthBar: {fileID: 2135717060}
 --- !u!1 &1856406775
 GameObject:
@@ -7655,4 +7573,3 @@ SceneRoots:
   - {fileID: 602603679}
   - {fileID: 1145935924}
   - {fileID: 1244135486}
-  - {fileID: 1562127658}

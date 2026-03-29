@@ -3,45 +3,64 @@ using UnityEngine;
 public class BossFightManager : MonoBehaviour
 {
     public static BossFightManager Instance;
-    [SerializeField] private Spawner spawer;
+
+    [SerializeField] private Spawner spawner;
     [SerializeField] private bool bossFightEnabled = false;
-    [SerializeField] private GameObject tankPrefab;
+
+    [SerializeField] private GameObject tank;
     [SerializeField] private GameObject tankHealthBar;
 
+    private bool bossSpawned = false;
 
-    void Awake()
+    private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
             Instance = this;
-
         else
-            Destroy(gameObject);    
+            Destroy(gameObject);
     }
 
-    void Start()
+    private void Start()
     {
-        tankHealthBar.SetActive(false);
+        if (tankHealthBar != null)
+            tankHealthBar.SetActive(false);
+
+        if (tank != null)
+            tank.SetActive(false);
     }
 
-    void Update()
+    private void Update()
     {
-        if(PlayerController.Instance.killCounter == 500)
+        if (!bossSpawned && PlayerController.Instance.killCounter >= 500)
         {
             EnableBossFight();
-            spawer.spawningEnabled = false;
+
+            if (spawner != null)
+                spawner.spawningEnabled = false;
+
+            bossSpawned = true; 
         }
     }
 
     public void EnableBossFight()
     {
         bossFightEnabled = true;
-        Instantiate(tankPrefab, transform.position, Quaternion.identity);
-        tankHealthBar.SetActive(true);
+
+        if (tank != null)
+            tank.SetActive(true);
+
+        if (tankHealthBar != null)
+            tankHealthBar.SetActive(true);
     }
 
     public void BossDied()
     {
         bossFightEnabled = false;
-        tankHealthBar.SetActive(false);
+
+        if (tankHealthBar != null)
+            tankHealthBar.SetActive(false);
+
+        if (spawner != null)
+            spawner.spawningEnabled = true;
     }
 }
