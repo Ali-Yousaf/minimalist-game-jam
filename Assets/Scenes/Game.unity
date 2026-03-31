@@ -3165,11 +3165,13 @@ MonoBehaviour:
   musicSource: {fileID: 329493587}
   SFXsource: {fileID: 2012581898}
   mainMenuMusic: {fileID: 8300000, guid: 1b5430fcf27959f4e86c5f591505d96e, type: 3}
-  mainMenuMusic2: {fileID: 8300000, guid: dc555a2904d00eb419d66e75ea844a4f, type: 3}
+  bossMusic: {fileID: 0}
   laserShootSFX: {fileID: 8300000, guid: f8319c8c4a587b04f994c18671f2a16f, type: 3}
   explosionSFX: {fileID: 8300000, guid: ba0bd641a78e2a64ab4f0c0498d4eb19, type: 3}
   upgradeUnlockSFX: {fileID: 8300000, guid: 6ebe5c1f5fdada743b0a4f5401baa328, type: 3}
-  fadeInDuration: 20
+  rocketFire: {fileID: 0}
+  tankExplosionSound: {fileID: 0}
+  fadeDuration: 2
 --- !u!1 &750462227
 GameObject:
   m_ObjectHideFlags: 0
@@ -5545,7 +5547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4908075971917564245, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.9
+      value: -13.78
       objectReference: {fileID: 0}
     - target: {fileID: 4908075971917564245, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6556,7 +6558,7 @@ MonoBehaviour:
   card1DescText: {fileID: 24054038}
   card2NameText: {fileID: 594008628}
   card2DescText: {fileID: 188466873}
-  killMilestones: 0a000000190000003200000064000000c80000002c01000090010000f4010000ee020000e8030000dc050000d0070000c4090000b80b0000ac0d0000a00f00009411000088130000
+  killMilestones: 0a00000019000000320000006400000096000000c80000002c01000090010000f4010000ee020000e8030000dc050000d0070000c4090000b80b0000ac0d0000a00f00009411000088130000
   allUpgrades: []
 --- !u!114 &1802778003
 MonoBehaviour:
@@ -6603,7 +6605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossFightManager
   spawner: {fileID: 1063931614}
   bossFightEnabled: 0
-  killCouterThreshold: 501
+  killCouterThreshold: 305
   tank: {fileID: 827844459}
   tankHealthBar: {fileID: 2135717060}
 --- !u!1 &1856406775

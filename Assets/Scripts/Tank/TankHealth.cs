@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TankHealth : MonoBehaviour
@@ -5,7 +7,20 @@ public class TankHealth : MonoBehaviour
     [SerializeField] public float maxHealth = 1000f;
     [SerializeField] private TankHealthBar healthBar;
 
+    [SerializeField] private ParticleSystem deathParticle1;
+    [SerializeField] private ParticleSystem deathParticle2;
+
+    [SerializeField] private SpriteRenderer Hull;
+    [SerializeField] private SpriteRenderer Gun;
+
+    private TankMovement tankMovement;
     public float currentHealth;
+
+
+    void Awake()
+    {
+        tankMovement = GetComponent<TankMovement>();
+    }
 
     private void Start()
     {
@@ -28,6 +43,7 @@ public class TankHealth : MonoBehaviour
 
         if (currentHealth <= 0f)
         {
+            tankMovement.canShoot = false;
             Die();
         }
     }
@@ -38,7 +54,15 @@ public class TankHealth : MonoBehaviour
     private void Die()
     {
         print("Tank Exploded");
+
+        Hull.enabled = false;
+        Gun.enabled = false;
+
         BossFightManager.Instance.BossDied();
-        Destroy(gameObject, 1f);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.explosionSFX);
+        deathParticle1.Play();
+        deathParticle2.Play();
+
+        Destroy(gameObject, 2f);
     }
 }

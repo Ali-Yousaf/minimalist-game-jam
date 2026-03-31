@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip explosionSFX;
     public AudioClip upgradeUnlockSFX;
     public AudioClip rocketFire;
+    public AudioClip tankExplosionSound;
 
     [Header("Music Settings")]
     [SerializeField] private float fadeDuration = 2f;

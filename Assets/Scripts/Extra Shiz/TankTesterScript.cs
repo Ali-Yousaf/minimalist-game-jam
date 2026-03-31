@@ -22,11 +22,9 @@ public class TankTesterScript : MonoBehaviour
 
     public void StartTest()
     {
-        tank.SetActive(true);
-        tankHealthBar.SetActive(true);
         player.EnableMovement();
         player.EnableDash();
         spawner.spawningEnabled = false;
-        BossFightManager.Instance.bossFightEnabled = true;
+        BossFightManager.Instance.EnableBossFight();
     }
 }

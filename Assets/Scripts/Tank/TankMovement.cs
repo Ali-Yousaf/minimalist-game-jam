@@ -32,6 +32,7 @@ public class TankMovement : MonoBehaviour
     [SerializeField] private float scaleUpDuration = 0.05f;
     [SerializeField] private float scaleDownDuration = 0.1f;
 
+    public bool canShoot = true;
     private Vector2 targetPosition;
     private int currentSpawnIndex = -1;
     private bool isAttacking = false;
@@ -164,15 +165,18 @@ public class TankMovement : MonoBehaviour
     // =============================
     private void Shoot()
     {
-        Instantiate(rocketPrefab, firePoint.position, firePoint.rotation);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.rocketFire);
+        if(canShoot)
+        {
+            Instantiate(rocketPrefab, firePoint.position, firePoint.rotation);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.rocketFire);
 
-        CameraShake.Instance?.Shake(0.2f, 0.2f);
+            CameraShake.Instance?.Shake(0.2f, 0.2f);
 
-        if (scalePunchRoutine != null)
-            StopCoroutine(scalePunchRoutine);
+            if (scalePunchRoutine != null)
+                StopCoroutine(scalePunchRoutine);
 
-        scalePunchRoutine = StartCoroutine(ScalePunch());
+            scalePunchRoutine = StartCoroutine(ScalePunch());
+        }
     }
 
     // =============================

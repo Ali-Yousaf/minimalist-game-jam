@@ -42,6 +42,7 @@ public class BossFightManager : MonoBehaviour
     public void EnableBossFight()
     {
         bossFightEnabled = true;
+        AudioManager.Instance.PlayBossMusic();
 
         if (tank != null)
             tank.SetActive(true);
@@ -53,6 +54,7 @@ public class BossFightManager : MonoBehaviour
     public void BossDied()
     {
         bossFightEnabled = false;
+        AudioManager.Instance.PlayMainMenuMusic();
 
         if (tankHealthBar != null)
             tankHealthBar.SetActive(false);
