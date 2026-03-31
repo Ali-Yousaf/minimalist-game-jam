@@ -27,5 +27,6 @@ public class TankTesterScript : MonoBehaviour
         player.EnableMovement();
         player.EnableDash();
         spawner.spawningEnabled = false;
+        BossFightManager.Instance.bossFightEnabled = true;
     }
 }

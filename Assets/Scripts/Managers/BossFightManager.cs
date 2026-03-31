@@ -5,7 +5,7 @@ public class BossFightManager : MonoBehaviour
     public static BossFightManager Instance;
 
     [SerializeField] private Spawner spawner;
-    [SerializeField] private bool bossFightEnabled = false;
+    [SerializeField] public bool bossFightEnabled = false;
     [SerializeField] private int killCouterThreshold = 501;
     [SerializeField] private GameObject tank;
     [SerializeField] private GameObject tankHealthBar;

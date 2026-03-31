@@ -164,7 +164,8 @@ public class TankMovement : MonoBehaviour
     // =============================
     private void Shoot()
     {
-        GameObject rocket = Instantiate(rocketPrefab, firePoint.position, firePoint.rotation);
+        Instantiate(rocketPrefab, firePoint.position, firePoint.rotation);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.rocketFire);
 
         CameraShake.Instance?.Shake(0.2f, 0.2f);
 

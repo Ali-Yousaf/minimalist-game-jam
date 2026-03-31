@@ -11,18 +11,18 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Clips")]
     public AudioClip mainMenuMusic;
-    public AudioClip mainMenuMusic2;
+    public AudioClip bossMusic;
     public AudioClip laserShootSFX;
     public AudioClip explosionSFX;
     public AudioClip upgradeUnlockSFX;
+    public AudioClip rocketFire;
 
     [Header("Music Settings")]
-    [SerializeField] private float fadeInDuration = 2f;
+    [SerializeField] private float fadeDuration = 2f;
 
     private const string MusicVolumeKey = "MusicVolume";
     private const string SFXVolumeKey = "SFXVolume";
 
-    private float defaultPitch = 1f;
     private float musicVolume = 1f;
     private float sfxVolume = 1f;
 
@@ -42,24 +42,48 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        defaultPitch = musicSource.pitch;
-        StartCoroutine(FadeInMusic());
+        PlayMainMenuMusic();
     }
 
     // =========================
-    // MUSIC FADE IN
+    // MUSIC CONTROL
     // =========================
-    private IEnumerator FadeInMusic()
-    {
-        musicSource.clip = mainMenuMusic;
-        musicSource.volume = 0f;
-        musicSource.Play();
 
+    public void PlayMainMenuMusic()
+    {
+        StopAllCoroutines();
+        StartCoroutine(FadeToNewMusic(mainMenuMusic));
+    }
+
+    public void PlayBossMusic()
+    {
+        StopAllCoroutines();
+        StartCoroutine(FadeToNewMusic(bossMusic));
+    }
+
+    private IEnumerator FadeToNewMusic(AudioClip newClip)
+    {
+        // Fade OUT current music
         float timer = 0f;
-        while (timer < fadeInDuration)
+        float startVolume = musicSource.volume;
+
+        while (timer < fadeDuration)
         {
             timer += Time.deltaTime;
-            musicSource.volume = Mathf.Lerp(0f, musicVolume, timer / fadeInDuration);
+            musicSource.volume = Mathf.Lerp(startVolume, 0f, timer / fadeDuration);
+            yield return null;
+        }
+
+        musicSource.Stop();
+        musicSource.clip = newClip;
+        musicSource.Play();
+
+        // Fade IN new music
+        timer = 0f;
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            musicSource.volume = Mathf.Lerp(0f, musicVolume, timer / fadeDuration);
             yield return null;
         }
 
@@ -69,6 +93,7 @@ public class AudioManager : MonoBehaviour
     // =========================
     // PLAY SFX
     // =========================
+
     public void PlaySFX(AudioClip clip)
     {
         if (clip == null) return;
@@ -78,6 +103,7 @@ public class AudioManager : MonoBehaviour
     // =========================
     // VOLUME CONTROL
     // =========================
+
     public void SetMusicVolume(float volume)
     {
         musicVolume = Mathf.Clamp01(volume);
@@ -104,6 +130,7 @@ public class AudioManager : MonoBehaviour
 
         if (musicSource != null)
             musicSource.volume = musicVolume;
+
         if (SFXsource != null)
             SFXsource.volume = sfxVolume;
     }
