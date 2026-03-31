@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7304276595561379552}
   - component: {fileID: 8891481360949770094}
   - component: {fileID: 6604333788565403316}
+  - component: {fileID: 3413067089213420342}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Tank
@@ -125,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TankMovement
   gun: {fileID: 9071996612056935536}
   firePoint: {fileID: 4024459415396678496}
-  bulletPrefab: {fileID: 2956224887348389205, guid: 5cfc85e25bbf12344ab6271d95904d13, type: 3}
+  rocketPrefab: {fileID: 2956224887348389205, guid: 5cfc85e25bbf12344ab6271d95904d13, type: 3}
   spawnPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -133,7 +134,7 @@ MonoBehaviour:
   moveSpeed: 2
   retreatSpeed: 3
   enterDistance: 10
-  fireRate: 0.7
+  fireRate: 1
   burstCount: 10
   gunRotationOffset: -90
   scaleMultiplier: 1.15
@@ -167,6 +168,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TankHealth
   maxHealth: 2000
   healthBar: {fileID: 8891481360949770094}
+  currentHealth: 0
+--- !u!114 &3413067089213420342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996846869327459037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f745de80c7e49041891c2f3fd9ff02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossDifficultyManager
+  healthThresholds: dc050000e8030000f4010000
 --- !u!1 &1014265511966529605
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class TankHealth : MonoBehaviour
 {
-    [SerializeField] private float maxHealth = 1000f;
+    [SerializeField] public float maxHealth = 1000f;
     [SerializeField] private TankHealthBar healthBar;
 
-    private float currentHealth;
+    public float currentHealth;
 
     private void Start()
     {

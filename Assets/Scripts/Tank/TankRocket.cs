@@ -3,9 +3,9 @@ using UnityEngine;
 public class TankRocket : MonoBehaviour
 {
     [SerializeField] private int damage = 50;
-    [SerializeField] private float duration = 3f;
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float acceleration = 3f;
+    [SerializeField] private float duration = 1f;
+    [SerializeField] public float speed = 5f;
+    [SerializeField] public float acceleration = 50f;
 
 
     void Start()

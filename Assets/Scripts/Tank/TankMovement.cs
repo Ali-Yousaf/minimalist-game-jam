@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class TankBoss : MonoBehaviour
+public class TankMovement : MonoBehaviour
 {
     public enum TankState { Enter, Attack, Retreat }
     private TankState currentState;
@@ -9,20 +9,20 @@ public class TankBoss : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform gun;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject rocketPrefab;
     [SerializeField] private Transform[] spawnPoints;
 
     private Transform player;
     private Rigidbody2D rb;
 
     [Header("Movement")]
-    [SerializeField] private float moveSpeed = 2f;
-    [SerializeField] private float retreatSpeed = 2f;
-    [SerializeField] private float enterDistance = 3f;
+    [SerializeField] public float moveSpeed = 2f;
+    [SerializeField] public float retreatSpeed = 2f;
+    [SerializeField] public float enterDistance = 3f;
 
     [Header("Attack")]
-    [SerializeField] private float fireRate = 0.1f;
-    [SerializeField] private int burstCount = 20;
+    [SerializeField] public float fireRate = 0.1f;
+    [SerializeField] public int burstCount = 20;
 
     [Header("Visuals")]
     [SerializeField] private float gunRotationOffset = -90f;
@@ -164,7 +164,7 @@ public class TankBoss : MonoBehaviour
     // =============================
     private void Shoot()
     {
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject rocket = Instantiate(rocketPrefab, firePoint.position, firePoint.rotation);
 
         CameraShake.Instance?.Shake(0.2f, 0.2f);
 
