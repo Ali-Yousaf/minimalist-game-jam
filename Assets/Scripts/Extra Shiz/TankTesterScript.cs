@@ -9,17 +9,14 @@ public class TankTesterScript : MonoBehaviour
     public Spawner spawner;
 
     public bool enableTesting = false;
-
-    void Awake()
-    {
-        
-    }
+    private bool hasStarted = false;
 
     void Update()
     {
-        if(enableTesting)
+        if (enableTesting && !hasStarted)
         {
             StartTest();
+            hasStarted = true;
         }
     }
 
@@ -29,6 +26,6 @@ public class TankTesterScript : MonoBehaviour
         tankHealthBar.SetActive(true);
         player.EnableMovement();
         player.EnableDash();
-        spawner.spawningEnabled = true;
+        spawner.spawningEnabled = false;
     }
 }
