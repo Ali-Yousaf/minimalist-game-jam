@@ -9,14 +9,24 @@ public class ExplosiveBullet : MonoBehaviour
     [SerializeField] private CircularFill fill; 
     [SerializeField] private Button button;
     public float bulletsDuration = 5f;
+    
+    [SerializeField] private GameObject lockedIcon;
+    public bool isLocked = false;
 
     private void Start()
     {
+        lockedIcon.SetActive(true);
         StartCoroutine(InitialFill());
     }
 
     public void EnableExplosiveBullets()
     {
+        if(isLocked)
+        {
+            PlayErrorAnimation();
+            return;
+        }
+
         if (fill == null) return;
 
         if (fill.IsFull())
@@ -27,12 +37,7 @@ public class ExplosiveBullet : MonoBehaviour
 
         else
         {
-            button.transform.DOKill();
-            button.transform
-                .DOShakeScale(0.5f, 0.15f, 10)
-                .SetEase(Ease.InOutQuad);
-
-            fill.FlashRed(); 
+            PlayErrorAnimation();
         }
     }
 
@@ -50,5 +55,21 @@ public class ExplosiveBullet : MonoBehaviour
         
         PlayerController.Instance.explosiveBulletsEnabled = false;
         fill.StartFill();
+    }
+
+    private void PlayErrorAnimation()
+    {
+        button.transform.DOKill();
+        button.transform
+            .DOShakeScale(0.5f, 0.15f, 10)
+            .SetEase(Ease.InOutQuad);
+
+        fill.FlashRed();
+    }
+
+    public void Unlock()
+    {
+        isLocked = false;
+        lockedIcon.SetActive(false);
     }
 }

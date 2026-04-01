@@ -13,6 +13,9 @@ public class TankHealth : MonoBehaviour
     [SerializeField] private SpriteRenderer Hull;
     [SerializeField] private SpriteRenderer Gun;
 
+    //TANK BOSS UNLOCKS SHIELD POWERUP
+    public Shield shieldPowerup;
+
     private TankMovement tankMovement;
     public float currentHealth;
 
@@ -57,6 +60,9 @@ public class TankHealth : MonoBehaviour
 
         Hull.enabled = false;
         Gun.enabled = false;
+
+        //unlock the shield powerup 
+        shieldPowerup.Unlock();
 
         BossFightManager.Instance.BossDied();
         AudioManager.Instance.PlaySFX(AudioManager.Instance.explosionSFX);

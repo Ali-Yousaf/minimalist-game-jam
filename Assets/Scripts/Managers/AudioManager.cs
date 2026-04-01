@@ -43,7 +43,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        PlayMainMenuMusic();
+        PlayMainMenuMusic(); // ✅ Will now properly fade in
     }
 
     // =========================
@@ -64,27 +64,36 @@ public class AudioManager : MonoBehaviour
 
     private IEnumerator FadeToNewMusic(AudioClip newClip)
     {
-        // Fade OUT current music
-        float timer = 0f;
-        float startVolume = musicSource.volume;
-
-        while (timer < fadeDuration)
+        // ✅ Fade OUT only if something is already playing
+        if (musicSource.isPlaying)
         {
-            timer += Time.deltaTime;
-            musicSource.volume = Mathf.Lerp(startVolume, 0f, timer / fadeDuration);
-            yield return null;
+            float timer = 0f;
+            float startVolume = musicSource.volume;
+
+            while (timer < fadeDuration)
+            {
+                timer += Time.deltaTime;
+                musicSource.volume = Mathf.Lerp(startVolume, 0f, timer / fadeDuration);
+                yield return null;
+            }
         }
 
+        // Switch to new clip
         musicSource.Stop();
         musicSource.clip = newClip;
+        musicSource.volume = 0f; // ✅ Start from silence
         musicSource.Play();
 
-        // Fade IN new music
-        timer = 0f;
-        while (timer < fadeDuration)
+        // Fade IN
+        float fadeInTimer = 0f;
+        while (fadeInTimer < fadeDuration)
         {
-            timer += Time.deltaTime;
-            musicSource.volume = Mathf.Lerp(0f, musicVolume, timer / fadeDuration);
+            fadeInTimer += Time.deltaTime;
+
+            // Optional easing (feels smoother)
+            float t = fadeInTimer / fadeDuration;
+            musicSource.volume = Mathf.Lerp(0f, musicVolume, t * t);
+
             yield return null;
         }
 
