@@ -2852,7 +2852,7 @@ MonoBehaviour:
   upgradeUnlockSFX: {fileID: 8300000, guid: 6ebe5c1f5fdada743b0a4f5401baa328, type: 3}
   rocketFire: {fileID: 8300000, guid: a3f973329c0791b489e4bfb4b1eb6393, type: 3}
   tankExplosionSound: {fileID: 8300000, guid: 43ad7fb0a7b45284b8255f7131702740, type: 3}
-  fadeDuration: 10
+  fadeDuration: 2
 --- !u!4 &1422502029
 Transform:
   m_ObjectHideFlags: 0

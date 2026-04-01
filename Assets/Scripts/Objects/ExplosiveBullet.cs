@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections;
-using System;
 
 public class ExplosiveBullet : MonoBehaviour
 {
@@ -11,17 +10,21 @@ public class ExplosiveBullet : MonoBehaviour
     public float bulletsDuration = 5f;
     
     [SerializeField] private GameObject lockedIcon;
-    public bool isLocked = false;
+    [SerializeField] private bool isLocked = true;
 
     private void Start()
     {
-        lockedIcon.SetActive(true);
-        StartCoroutine(InitialFill());
+        UpdateLockState();
+
+        if (!isLocked)
+        {
+            StartCoroutine(InitialFill());
+        }
     }
 
     public void EnableExplosiveBullets()
     {
-        if(isLocked)
+        if (isLocked)
         {
             PlayErrorAnimation();
             return;
@@ -34,27 +37,32 @@ public class ExplosiveBullet : MonoBehaviour
             fill.ResetFill();
             StartCoroutine(BulletsRoutine());
         }
-
         else
         {
             PlayErrorAnimation();
         }
     }
 
-
     private IEnumerator InitialFill()
     {
         yield return new WaitForSeconds(2f);
-        fill.StartFill();
+
+        if (!isLocked)
+            fill.StartFill();
     }
     
     private IEnumerator BulletsRoutine()
     {
         PlayerController.Instance.explosiveBulletsEnabled = true;
+
         yield return new WaitForSeconds(bulletsDuration);
         
         PlayerController.Instance.explosiveBulletsEnabled = false;
-        fill.StartFill();
+
+        yield return new WaitForSeconds(2f);
+
+        if (!isLocked)
+            fill.StartFill();
     }
 
     private void PlayErrorAnimation()
@@ -69,7 +77,17 @@ public class ExplosiveBullet : MonoBehaviour
 
     public void Unlock()
     {
+        if (!isLocked) return;
+
         isLocked = false;
-        lockedIcon.SetActive(false);
+        UpdateLockState();
+
+        StartCoroutine(InitialFill());
+    }
+
+    private void UpdateLockState()
+    {
+        lockedIcon.SetActive(isLocked);
+        button.interactable = !isLocked;
     }
 }

@@ -9,20 +9,21 @@ public class Rocket : MonoBehaviour
     [SerializeField] private Button rocketButton;
 
     [SerializeField] private GameObject lockedIcon;
-    public bool isLocked = false;
+    [SerializeField] private bool isLocked = true;
 
-    private void Awake()
+    private void Start()
     {
-        if (rocketButton != null)
+        UpdateLockState();
+
+        if (!isLocked)
         {
-            lockedIcon.SetActive(true);
             StartCoroutine(StartCircularFill());
         }
     }
 
     public void ThrowRocket()
     {
-        if(isLocked)
+        if (isLocked)
         {
             PlayErrorAnimation();
             return;
@@ -35,9 +36,7 @@ public class Rocket : MonoBehaviour
             FireRocket();  
             fill.ResetFill(); 
             StartCoroutine(StartCircularFill());
-
         }
-
         else
         {
             PlayErrorAnimation();
@@ -47,7 +46,9 @@ public class Rocket : MonoBehaviour
     IEnumerator StartCircularFill()
     {
         yield return new WaitForSeconds(2f);
-        fill.StartFill();
+
+        if (!isLocked)
+            fill.StartFill();
     }
 
     private void FireRocket()
@@ -67,7 +68,7 @@ public class Rocket : MonoBehaviour
                 enemyHealth.Die();
             }
 
-            yield return new WaitForSeconds(0.3f); // delay between each enemy
+            yield return new WaitForSeconds(0.3f);
         }
     }
 
@@ -83,8 +84,17 @@ public class Rocket : MonoBehaviour
 
     public void Unlock()
     {
+        if (!isLocked) return;
+
         isLocked = false;
-        lockedIcon.SetActive(false);
+        UpdateLockState();
+
+        StartCoroutine(StartCircularFill());
+    }
+
+    private void UpdateLockState()
+    {
+        lockedIcon.SetActive(isLocked);
+        rocketButton.interactable = !isLocked;
     }
 }
-            

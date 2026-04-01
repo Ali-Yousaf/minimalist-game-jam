@@ -11,18 +11,23 @@ public class Shield : MonoBehaviour
     public float shieldDuration = 5f;
 
     [SerializeField] private GameObject lockedIcon;
-    public bool isLocked = false;
+    [SerializeField] private bool isLocked = true; // default locked
 
     private void Start()
     {
         playerShield.SetActive(false);
-        lockedIcon.SetActive(true);
-        StartCoroutine(InitialFill());
+
+        UpdateLockState();
+
+        if (!isLocked)
+        {
+            StartCoroutine(InitialFill());
+        }
     }
 
     public void ActivateShield()
     {
-        if(isLocked)
+        if (isLocked)
         {
             PlayErrorAnimation();
             return;
@@ -55,8 +60,10 @@ public class Shield : MonoBehaviour
 
         playerShield.SetActive(false);
 
-        yield return new WaitForSeconds(2f); 
-        fill.StartFill();
+        yield return new WaitForSeconds(2f);
+
+        if (!isLocked) // safety check
+            fill.StartFill();
     }
 
     private void PlayErrorAnimation()
@@ -71,7 +78,17 @@ public class Shield : MonoBehaviour
 
     public void Unlock()
     {
+        if (!isLocked) return;
+
         isLocked = false;
-        lockedIcon.SetActive(false);
+        UpdateLockState();
+
+        StartCoroutine(InitialFill());
+    }
+
+    private void UpdateLockState()
+    {
+        lockedIcon.SetActive(isLocked);
+        shieldButton.interactable = !isLocked;
     }
 }

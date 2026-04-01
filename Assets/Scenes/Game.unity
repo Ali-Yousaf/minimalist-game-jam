@@ -2596,7 +2596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &632432969
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3189,7 +3189,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &750462228
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3573,7 +3573,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &912239518
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5667,6 +5667,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6604333788565403316, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
+      propertyPath: shieldPowerup
+      value: 
+      objectReference: {fileID: 1280286423}
     - target: {fileID: 7304276595561379552, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
       propertyPath: 'spawnPoints.Array.data[0]'
       value: 
