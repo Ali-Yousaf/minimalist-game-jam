@@ -62,7 +62,7 @@ public class TankHealth : MonoBehaviour
         Gun.enabled = false;
 
         //unlock the shield powerup 
-        //shieldPowerup.Unlock();
+        shieldPowerup.Unlock();
 
         BossFightManager.Instance.BossDied();
         AudioManager.Instance.PlaySFX(AudioManager.Instance.explosionSFX);

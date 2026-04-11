@@ -9,8 +9,16 @@ public class ExplosiveBullet : MonoBehaviour
     [SerializeField] private Button button;
     public float bulletsDuration = 5f;
 
+    [SerializeField] private GameObject powerup;
+
     private void Start()
     {
+        powerup.SetActive(false);
+    }
+
+    public void Unlock()
+    {
+        powerup.SetActive(true);
         StartCoroutine(InitialFill());
     }
 

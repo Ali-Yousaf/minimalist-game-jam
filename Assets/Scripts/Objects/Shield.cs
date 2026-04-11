@@ -10,9 +10,17 @@ public class Shield : MonoBehaviour
     [SerializeField] private GameObject playerShield;
     public float shieldDuration = 5f;
 
+    [SerializeField] private GameObject powerup;
+
     private void Start()
     {
         playerShield.SetActive(false);
+        powerup.SetActive(false);
+    }
+
+    public void Unlock()
+    {
+        powerup.SetActive(true);
         StartCoroutine(InitialFill());
     }
 

@@ -8,8 +8,16 @@ public class Rocket : MonoBehaviour
     [SerializeField] private CircularFill fill; 
     [SerializeField] private Button rocketButton;
 
+    [SerializeField] private GameObject powerup;
+
     private void Start()
     {
+        powerup.SetActive(false);
+    }
+
+    public void Unlock()
+    {
+        powerup.SetActive(true);
         StartCoroutine(StartCircularFill());
     }
 

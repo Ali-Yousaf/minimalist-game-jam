@@ -4700,8 +4700,7 @@ MonoBehaviour:
   fill: {fileID: 1788539991}
   button: {fileID: 1788539990}
   bulletsDuration: 10
-  lockedIcon: {fileID: 0}
-  isLocked: 0
+  powerup: {fileID: 1788539988}
 --- !u!114 &1280286423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4718,8 +4717,7 @@ MonoBehaviour:
   shieldButton: {fileID: 1190454042}
   playerShield: {fileID: 1665767334}
   shieldDuration: 10
-  lockedIcon: {fileID: 0}
-  isLocked: 0
+  powerup: {fileID: 1190454040}
 --- !u!114 &1280286424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4734,8 +4732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Rocket
   fill: {fileID: 882404526}
   rocketButton: {fileID: 882404527}
-  lockedIcon: {fileID: 0}
-  isLocked: 0
+  powerup: {fileID: 882404522}
 --- !u!4 &1280286425
 Transform:
   m_ObjectHideFlags: 0
