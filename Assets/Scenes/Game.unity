@@ -4887,7 +4887,7 @@ Transform:
   m_GameObject: {fileID: 1244135485}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -30.9, z: 0}
+  m_LocalPosition: {x: 0, y: -32.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5986,15 +5986,15 @@ PrefabInstance:
     - target: {fileID: 7304276595561379552, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
       propertyPath: 'spawnPoints.Array.data[0]'
       value: 
-      objectReference: {fileID: 602603679}
+      objectReference: {fileID: 1244135486}
     - target: {fileID: 7304276595561379552, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
       propertyPath: 'spawnPoints.Array.data[1]'
       value: 
-      objectReference: {fileID: 1145935924}
+      objectReference: {fileID: 602603679}
     - target: {fileID: 7304276595561379552, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
       propertyPath: 'spawnPoints.Array.data[2]'
       value: 
-      objectReference: {fileID: 1244135486}
+      objectReference: {fileID: 1145935924}
     - target: {fileID: 8891481360949770094, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
       propertyPath: slider
       value: 
@@ -6692,7 +6692,7 @@ MonoBehaviour:
   movieCanvas: {fileID: 1298987228}
   mainCamera: {fileID: 519420031}
   movieAnimator: {fileID: 1016596676}
-  goBackAnimDuration: 1
+  goBackAnimDuration: 0.5
   targetSize: 30
   originalSize: 15
   smoothTime: 0.5

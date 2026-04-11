@@ -39,6 +39,7 @@ public class TankMovement : MonoBehaviour
 
     private Vector3 originalScale;
     private Coroutine scalePunchRoutine;
+    private bool isFirstSpawn = true;
 
     private void Start()
     {
@@ -214,11 +215,19 @@ public class TankMovement : MonoBehaviour
     {
         int newIndex;
 
-        do
+        if (isFirstSpawn)
         {
-            newIndex = Random.Range(0, spawnPoints.Length);
+            newIndex = 0;
+            isFirstSpawn = false;
         }
-        while (newIndex == currentSpawnIndex);
+        else
+        {
+            do
+            {
+                newIndex = Random.Range(0, spawnPoints.Length);
+            }
+            while (newIndex == currentSpawnIndex);
+        }
 
         currentSpawnIndex = newIndex;
 
