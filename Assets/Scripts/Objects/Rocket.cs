@@ -8,27 +8,13 @@ public class Rocket : MonoBehaviour
     [SerializeField] private CircularFill fill; 
     [SerializeField] private Button rocketButton;
 
-    [SerializeField] private GameObject lockedIcon;
-    [SerializeField] private bool isLocked = true;
-
     private void Start()
     {
-        UpdateLockState();
-
-        if (!isLocked)
-        {
-            StartCoroutine(StartCircularFill());
-        }
+        StartCoroutine(StartCircularFill());
     }
 
     public void ThrowRocket()
     {
-        if (isLocked)
-        {
-            PlayErrorAnimation();
-            return;
-        }
-
         if (fill == null) return;
 
         if (fill.IsFull())
@@ -46,9 +32,7 @@ public class Rocket : MonoBehaviour
     IEnumerator StartCircularFill()
     {
         yield return new WaitForSeconds(2f);
-
-        if (!isLocked)
-            fill.StartFill();
+        fill.StartFill();
     }
 
     private void FireRocket()
@@ -80,21 +64,5 @@ public class Rocket : MonoBehaviour
             .SetEase(Ease.InOutQuad);
 
         fill.FlashRed();
-    }
-
-    public void Unlock()
-    {
-        if (!isLocked) return;
-
-        isLocked = false;
-        UpdateLockState();
-
-        StartCoroutine(StartCircularFill());
-    }
-
-    private void UpdateLockState()
-    {
-        lockedIcon.SetActive(isLocked);
-        rocketButton.interactable = !isLocked;
     }
 }
