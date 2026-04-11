@@ -11,7 +11,7 @@ public class Shield : MonoBehaviour
     public float shieldDuration = 5f;
 
     [SerializeField] private GameObject lockedIcon;
-    [SerializeField] private bool isLocked = true; // default locked
+    [SerializeField] private bool isLocked = true;
 
     private void Start()
     {
@@ -49,7 +49,9 @@ public class Shield : MonoBehaviour
     private IEnumerator InitialFill()
     {
         yield return new WaitForSeconds(2f);
-        fill.StartFill();
+
+        if (!isLocked)
+            fill.StartFill();
     }
 
     private IEnumerator ShieldRoutine()
@@ -62,7 +64,7 @@ public class Shield : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        if (!isLocked) // safety check
+        if (!isLocked)
             fill.StartFill();
     }
 

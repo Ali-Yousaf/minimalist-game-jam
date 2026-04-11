@@ -60,7 +60,7 @@ public class Rocket : MonoBehaviour
     {
         foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            if (enemy == null) continue; 
+            if (enemy == null) continue;
 
             EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
