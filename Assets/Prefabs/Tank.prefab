@@ -135,7 +135,8 @@ MonoBehaviour:
   - {fileID: 0}
   moveSpeed: 2
   retreatSpeed: 3
-  enterDistance: 10
+  firstEnterDistance: 15
+  normalEnterDistance: 10
   fireRate: 1
   burstCount: 10
   gunRotationOffset: -90
@@ -175,6 +176,7 @@ MonoBehaviour:
   deathParticle2: {fileID: 1533183490294765394}
   Hull: {fileID: 1564218332174976528}
   Gun: {fileID: 7657312284076661110}
+  shieldPowerup: {fileID: 0}
   currentHealth: 0
 --- !u!114 &3413067089213420342
 MonoBehaviour:

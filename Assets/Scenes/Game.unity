@@ -4887,7 +4887,7 @@ Transform:
   m_GameObject: {fileID: 1244135485}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -32.1, z: 0}
+  m_LocalPosition: {x: 0, y: -25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5934,10 +5934,6 @@ PrefabInstance:
     - target: {fileID: 996846869327459037, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
       propertyPath: m_Name
       value: Tank
-      objectReference: {fileID: 0}
-    - target: {fileID: 996846869327459037, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4908075971917564245, guid: 947d38200eeb6a442bf12097333976f7, type: 3}
       propertyPath: m_LocalPosition.x

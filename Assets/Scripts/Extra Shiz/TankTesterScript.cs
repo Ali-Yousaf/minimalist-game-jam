@@ -18,6 +18,12 @@ public class TankTesterScript : MonoBehaviour
             StartTest();
             hasStarted = true;
         }
+
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            StartTest();
+            hasStarted = true;
+        }
     }
 
     public void StartTest()

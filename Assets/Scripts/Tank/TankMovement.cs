@@ -18,7 +18,8 @@ public class TankMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] public float moveSpeed = 2f;
     [SerializeField] public float retreatSpeed = 2f;
-    [SerializeField] public float enterDistance = 3f;
+    [SerializeField] private float firstEnterDistance = 15f;
+    [SerializeField] private float normalEnterDistance = 10f;
 
     [Header("Attack")]
     [SerializeField] public float fireRate = 0.1f;
@@ -32,6 +33,8 @@ public class TankMovement : MonoBehaviour
     [SerializeField] private float scaleUpDuration = 0.05f;
     [SerializeField] private float scaleDownDuration = 0.1f;
 
+    // =-------------------------------------------------------------------------=
+
     public bool canShoot = true;
     private Vector2 targetPosition;
     private int currentSpawnIndex = -1;
@@ -39,10 +42,13 @@ public class TankMovement : MonoBehaviour
 
     private Vector3 originalScale;
     private Coroutine scalePunchRoutine;
-    private bool isFirstSpawn = true;
 
+    // Entry scene related
+    private bool isFirstSpawn = true;
+    private Vector3 firstSpawnOriginalPos;
     private void Start()
     {
+        firstSpawnOriginalPos = spawnPoints[0].position;
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -107,10 +113,8 @@ public class TankMovement : MonoBehaviour
             yield return new WaitForSeconds(fireRate);
         }
 
-        // Unlock movement
         rb.constraints = RigidbodyConstraints2D.None;
 
-        // Go to retreat (NO teleport)
         currentState = TankState.Retreat;
 
         isAttacking = false;
@@ -214,19 +218,28 @@ public class TankMovement : MonoBehaviour
     private void PickNewSpawn()
     {
         int newIndex;
+        float usedEnterDistance;
 
         if (isFirstSpawn)
         {
             newIndex = 0;
+            usedEnterDistance = firstEnterDistance;
+
+            spawnPoints[0].position += Vector3.up * -5f;
+
             isFirstSpawn = false;
         }
         else
         {
+            spawnPoints[0].position = firstSpawnOriginalPos;
+
             do
             {
                 newIndex = Random.Range(0, spawnPoints.Length);
             }
             while (newIndex == currentSpawnIndex);
+
+            usedEnterDistance = normalEnterDistance;
         }
 
         currentSpawnIndex = newIndex;
@@ -235,6 +248,6 @@ public class TankMovement : MonoBehaviour
         transform.position = spawn.position;
 
         Vector2 dirToPlayer = (player.position - transform.position).normalized;
-        targetPosition = (Vector2)spawn.position + dirToPlayer * enterDistance;
+        targetPosition = (Vector2)spawn.position + dirToPlayer * usedEnterDistance;
     }
 }
