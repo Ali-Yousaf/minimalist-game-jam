@@ -30,18 +30,18 @@ public class PowerupUnlockSequence : MonoBehaviour
 
     public void PlayUnlock(Sprite icon, string title, string description)
     {
-        // Kill previous animation if running
         sequence?.Kill();
 
-        // Activate UI
+        // // 🔻 Disable spawning
+        // if (Spawner.Instance != null)
+        //     Spawner.Instance.enableSpawning = false;
+
         container.SetActive(true);
 
-        // Set data
         powerupIcon.sprite = icon;
         powerupNameText.text = title;
         powerupDescText.text = description;
 
-        // Reset states
         powerupIcon.transform.localScale = Vector3.zero;
         powerupIcon.color = new Color(1,1,1,0);
 
@@ -51,31 +51,20 @@ public class PowerupUnlockSequence : MonoBehaviour
         if (background != null)
             background.color = new Color(0,0,0,0);
 
-        // Create sequence
         sequence = DOTween.Sequence();
 
-        // 🔹 Background fade
         if (background != null)
-        {
             sequence.Append(background.DOFade(0.6f, 0.2f));
-        }
 
-        // 🔹 Icon pop-in (scale + fade)
         sequence.Append(powerupIcon.DOFade(1f, 0.2f));
         sequence.Join(
             powerupIcon.transform.DOScale(1.2f, animationDuration)
             .SetEase(Ease.OutBack)
         );
 
-        // 🔹 Settle scale
-        sequence.Append(
-            powerupIcon.transform.DOScale(1f, 0.2f)
-        );
+        sequence.Append(powerupIcon.transform.DOScale(1f, 0.2f));
 
-        // 🔹 Text fade + slight move
-        sequence.Append(
-            powerupNameText.DOFade(1f, 0.3f)
-        );
+        sequence.Append(powerupNameText.DOFade(1f, 0.3f));
         sequence.Join(
             powerupNameText.transform.DOLocalMoveY(
                 powerupNameText.transform.localPosition.y + 20f, 
@@ -83,9 +72,7 @@ public class PowerupUnlockSequence : MonoBehaviour
             ).From()
         );
 
-        sequence.Append(
-            powerupDescText.DOFade(1f, 0.3f)
-        );
+        sequence.Append(powerupDescText.DOFade(1f, 0.3f));
         sequence.Join(
             powerupDescText.transform.DOLocalMoveY(
                 powerupDescText.transform.localPosition.y + 15f, 
@@ -93,10 +80,10 @@ public class PowerupUnlockSequence : MonoBehaviour
             ).From()
         );
 
-        // 🔹 Wait
-        sequence.AppendInterval(displayTime);
+        // 🔥 Stay visible for 3 seconds
+        sequence.AppendInterval(3f);
 
-        // 🔻 Exit animation
+        // Exit
         sequence.Append(powerupIcon.transform.DOScale(0f, 0.3f).SetEase(Ease.InBack));
         sequence.Join(powerupIcon.DOFade(0f, 0.2f));
 
@@ -106,10 +93,13 @@ public class PowerupUnlockSequence : MonoBehaviour
         if (background != null)
             sequence.Join(background.DOFade(0f, 0.3f));
 
-        // 🔹 Disable after finish
         sequence.OnComplete(() =>
         {
             container.SetActive(false);
+
+            // // 🔺 Re-enable spawning
+            // if (Spawner.Instance != null)
+            //     Spawner.Instance.enableSpawning = true;
         });
     }
 }
