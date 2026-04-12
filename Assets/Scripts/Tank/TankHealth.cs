@@ -61,8 +61,7 @@ public class TankHealth : MonoBehaviour
         Hull.enabled = false;
         Gun.enabled = false;
 
-        //unlock the shield powerup 
-        shieldPowerup.Unlock();
+        UnlockPowerup();
 
         BossFightManager.Instance.BossDied();
         AudioManager.Instance.PlaySFX(AudioManager.Instance.explosionSFX);
@@ -70,5 +69,11 @@ public class TankHealth : MonoBehaviour
         deathParticle2.Play();
 
         Destroy(gameObject, 2f);
+    }
+
+    private void UnlockPowerup()
+    {
+        PowerupUnlockSequence.Instance.PlayUnlock(shieldPowerup.icon, "Shield", "throws a protective shield around the player");
+        shieldPowerup.Unlock();
     }
 }

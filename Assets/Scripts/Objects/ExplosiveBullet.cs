@@ -10,6 +10,7 @@ public class ExplosiveBullet : MonoBehaviour
     public float bulletsDuration = 5f;
 
     [SerializeField] private GameObject powerup;
+    public Sprite icon;
 
     private void Start()
     {

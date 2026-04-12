@@ -9,8 +9,8 @@ public class Shield : MonoBehaviour
     [SerializeField] private Button shieldButton;
     [SerializeField] private GameObject playerShield;
     public float shieldDuration = 5f;
-
     [SerializeField] private GameObject powerup;
+    public Sprite icon;
 
     private void Start()
     {

@@ -9,6 +9,7 @@ public class Rocket : MonoBehaviour
     [SerializeField] private Button rocketButton;
 
     [SerializeField] private GameObject powerup;
+    public Sprite icon;
 
     private void Start()
     {
