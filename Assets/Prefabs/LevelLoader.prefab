@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelLoader
   animator: {fileID: 259850484446981904}
-  transitionTime: 1.5
+  transitionTime: 2
 --- !u!1 &7887919976165315451
 GameObject:
   m_ObjectHideFlags: 0
