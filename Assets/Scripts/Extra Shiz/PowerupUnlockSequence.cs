@@ -31,7 +31,6 @@ public class PowerupUnlockSequence : MonoBehaviour
     public void PlayUnlock(Sprite icon, string title, string description)
     {
         sequence?.Kill();
-
         // // 🔻 Disable spawning
         // if (Spawner.Instance != null)
         //     Spawner.Instance.enableSpawning = false;

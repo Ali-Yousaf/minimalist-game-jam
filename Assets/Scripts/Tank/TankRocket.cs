@@ -15,7 +15,7 @@ public class TankRocket : MonoBehaviour
 
     void Update()
     {
-        speed += acceleration * Time.deltaTime; // increase speed over time
+        speed += acceleration * Time.deltaTime;
         transform.Translate(Vector2.up * speed * Time.deltaTime);
     }
 
@@ -31,6 +31,11 @@ public class TankRocket : MonoBehaviour
                 print("Damage: " + damage);
                 Destroy(gameObject);
             }
+        }
+
+        if(collision.CompareTag("PlayerShield"))
+        {
+            Destroy(gameObject);
         }
     }
 }
