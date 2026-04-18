@@ -31,7 +31,7 @@ public class PowerupUnlockSequence : MonoBehaviour
     public void PlayUnlock(Sprite icon, string title, string description)
     {
         sequence?.Kill();
-        // // 🔻 Disable spawning
+        
         // if (Spawner.Instance != null)
         //     Spawner.Instance.enableSpawning = false;
 
@@ -79,10 +79,10 @@ public class PowerupUnlockSequence : MonoBehaviour
             ).From()
         );
 
-        // 🔥 Stay visible for 3 seconds
+        // Stay visible for 3 seconds
         sequence.AppendInterval(3f);
 
-        // Exit
+        // Exit 
         sequence.Append(powerupIcon.transform.DOScale(0f, 0.3f).SetEase(Ease.InBack));
         sequence.Join(powerupIcon.DOFade(0f, 0.2f));
 
@@ -96,7 +96,6 @@ public class PowerupUnlockSequence : MonoBehaviour
         {
             container.SetActive(false);
 
-            // // 🔺 Re-enable spawning
             // if (Spawner.Instance != null)
             //     Spawner.Instance.enableSpawning = true;
         });
