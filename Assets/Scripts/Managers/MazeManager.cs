@@ -45,6 +45,7 @@ public class MazeManager : MonoBehaviour
         if (!hasTriggered && PlayerController.Instance.killCounter >= thresholdForMaze)
         {
             hasTriggered = true;
+            AudioManager.Instance.PlayMazeMusic();
             StartCoroutine(TriggerMazeSequence());
         }
     }
@@ -99,6 +100,7 @@ public class MazeManager : MonoBehaviour
 
     private void EnableFlashlightMode()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.flashLightOnSFX);
         flashlight.gameObject.SetActive(true);
     }
 

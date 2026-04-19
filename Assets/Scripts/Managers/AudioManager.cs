@@ -12,11 +12,13 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Clips")]
     public AudioClip mainMenuMusic;
     public AudioClip bossMusic;
+    public AudioClip mazeMusic;
     public AudioClip laserShootSFX;
     public AudioClip explosionSFX;
     public AudioClip upgradeUnlockSFX;
     public AudioClip rocketFire;
     public AudioClip tankExplosionSound;
+    public AudioClip flashLightOnSFX;
 
     [Header("Music Settings")]
     [SerializeField] private float fadeDuration = 2f;
@@ -26,6 +28,8 @@ public class AudioManager : MonoBehaviour
 
     private float musicVolume = 1f;
     private float sfxVolume = 1f;
+
+    private Coroutine musicRoutine;
 
     private void Awake()
     {
@@ -47,29 +51,40 @@ public class AudioManager : MonoBehaviour
     }
 
     // =========================
-    // MUSIC CONTROL
+    // MUSIC CONTROL (CLEAN)
     // =========================
 
     public void PlayMainMenuMusic()
     {
-        StopAllCoroutines();
-        StartCoroutine(FadeToNewMusic(mainMenuMusic));
+        PlayMusic(mainMenuMusic);
     }
 
     public void PlayBossMusic()
     {
-        StopAllCoroutines();
-        StartCoroutine(FadeToNewMusic(bossMusic));
+        PlayMusic(bossMusic);
+    }
+
+    public void PlayMazeMusic()
+    {
+        PlayMusic(mazeMusic);
+    }
+
+    private void PlayMusic(AudioClip newClip)
+    {
+        if (musicRoutine != null)
+            StopCoroutine(musicRoutine);
+
+        musicRoutine = StartCoroutine(FadeToNewMusic(newClip));
     }
 
     private IEnumerator FadeToNewMusic(AudioClip newClip)
     {
-        // ✅ Fade OUT only if something is already playing
+        float timer = 0f;
+        float startVolume = musicSource.volume;
+
+        // FADE OUT
         if (musicSource.isPlaying)
         {
-            float timer = 0f;
-            float startVolume = musicSource.volume;
-
             while (timer < fadeDuration)
             {
                 timer += Time.deltaTime;
@@ -78,26 +93,25 @@ public class AudioManager : MonoBehaviour
             }
         }
 
-        // Switch to new clip
+        // SWITCH TRACK
         musicSource.Stop();
         musicSource.clip = newClip;
-        musicSource.volume = 0f; // ✅ Start from silence
         musicSource.Play();
 
-        // Fade IN
-        float fadeInTimer = 0f;
-        while (fadeInTimer < fadeDuration)
+        // FADE IN
+        timer = 0f;
+
+        while (timer < fadeDuration)
         {
-            fadeInTimer += Time.deltaTime;
+            timer += Time.deltaTime;
+            float t = timer / fadeDuration;
 
-            // Optional easing (feels smoother)
-            float t = fadeInTimer / fadeDuration;
             musicSource.volume = Mathf.Lerp(0f, musicVolume, t * t);
-
             yield return null;
         }
 
         musicSource.volume = musicVolume;
+        musicRoutine = null;
     }
 
     // =========================

@@ -693,6 +693,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 1
+  m_characterHorizontalScale: 1
   m_wordSpacing: 1
   m_lineSpacing: 12
   m_lineSpacingMax: 0
@@ -909,6 +910,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1011,6 +1013,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1280,6 +1283,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 1
+  m_characterHorizontalScale: 1
   m_wordSpacing: 1
   m_lineSpacing: 12
   m_lineSpacingMax: 0
@@ -1416,6 +1420,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2773,6 +2778,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 1
+  m_characterHorizontalScale: 1
   m_wordSpacing: 1
   m_lineSpacing: 12
   m_lineSpacingMax: 0
@@ -2847,11 +2853,13 @@ MonoBehaviour:
   SFXsource: {fileID: 1000247410}
   mainMenuMusic: {fileID: 8300000, guid: 1b5430fcf27959f4e86c5f591505d96e, type: 3}
   bossMusic: {fileID: 8300000, guid: 6c40c9434351a134c934982964472501, type: 3}
+  mazeMusic: {fileID: 8300000, guid: f1f7aec6ca06f904d9c6a3c4b8372edf, type: 3}
   laserShootSFX: {fileID: 8300000, guid: f8319c8c4a587b04f994c18671f2a16f, type: 3}
   explosionSFX: {fileID: 8300000, guid: ba0bd641a78e2a64ab4f0c0498d4eb19, type: 3}
   upgradeUnlockSFX: {fileID: 8300000, guid: 6ebe5c1f5fdada743b0a4f5401baa328, type: 3}
   rocketFire: {fileID: 8300000, guid: a3f973329c0791b489e4bfb4b1eb6393, type: 3}
   tankExplosionSound: {fileID: 8300000, guid: 43ad7fb0a7b45284b8255f7131702740, type: 3}
+  flashLightOnSFX: {fileID: 8300000, guid: 319c23040f989ca4cb831e7568797bb0, type: 3}
   fadeDuration: 2
 --- !u!4 &1422502029
 Transform:
@@ -3147,6 +3155,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 1
+  m_characterHorizontalScale: 1
   m_wordSpacing: 1
   m_lineSpacing: 12
   m_lineSpacingMax: 0
@@ -3496,6 +3505,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
