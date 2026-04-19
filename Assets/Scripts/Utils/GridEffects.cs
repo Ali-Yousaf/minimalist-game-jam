@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 public class GridJuiceFX : MonoBehaviour
 {
@@ -194,5 +195,24 @@ public class GridJuiceFX : MonoBehaviour
         targetWiggle = Mathf.Min(targetWiggle, maxWiggleAmount);
         targetRotation = Mathf.Min(targetRotation, maxRotationSpeed);
         targetPulse = Mathf.Min(targetPulse, maxPulseAmount);
+    }
+
+    public void DisableAllGridEffects()
+    {
+        enablePulse = false;
+        enableWiggle = false;
+        enableReactiveBurst = false;
+        enableRotation = false;
+        
+        transform.rotation = Quaternion.identity;
+        transform.localScale = originalScale;
+    }
+
+    public void EnableAllGridEffects()
+    {
+        enablePulse = true;
+        enableWiggle = true;
+        enableReactiveBurst = true;
+        enableRotation = true;
     }
 }
