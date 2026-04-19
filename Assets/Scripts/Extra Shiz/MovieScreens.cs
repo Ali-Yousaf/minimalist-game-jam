@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class TankEntryScene : MonoBehaviour
+public class MovieScreens : MonoBehaviour
 {
     [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject movieCanvas;
@@ -51,7 +51,7 @@ public class TankEntryScene : MonoBehaviour
         }
     }
 
-    public void ActivateEntryScene()
+    public void ActiveMovieScreens()
     {
         StartCoroutine(EntrySequence());
     }

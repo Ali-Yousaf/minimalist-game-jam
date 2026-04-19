@@ -6,10 +6,10 @@ public class BossFightManager : MonoBehaviour
 
     [SerializeField] private Spawner spawner;
     [SerializeField] public bool bossFightEnabled = false;
-    [SerializeField] private int KillThresholdToSpawn = 501;
+    [SerializeField] private int KillThresholdToSpawn = 325;
     [SerializeField] private GameObject tank;
     [SerializeField] private GameObject tankHealthBar;
-    [SerializeField] private TankEntryScene tankEntry;
+    [SerializeField] private MovieScreens movieScreens;
 
     private bool bossSpawned = false;
 
@@ -23,7 +23,7 @@ public class BossFightManager : MonoBehaviour
 
     private void Start()
     {
-        tankEntry = FindFirstObjectByType<TankEntryScene>();
+        movieScreens = FindAnyObjectByType<MovieScreens>();
 
         if (tankHealthBar != null)
             tankHealthBar.SetActive(false);
@@ -46,7 +46,7 @@ public class BossFightManager : MonoBehaviour
     public void EnableBossFight()
     {
         bossFightEnabled = true;
-        tankEntry.ActivateEntryScene();
+        movieScreens.ActiveMovieScreens();
         AudioManager.Instance.PlayBossMusic();
 
         if (tank != null)

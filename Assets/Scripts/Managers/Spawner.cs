@@ -1,7 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public static Spawner Instance;
+
     [System.Serializable]
     public class EnemyType
     {
@@ -18,6 +21,15 @@ public class Spawner : MonoBehaviour
     public Camera mainCamera;  
     public float spawnOffset = 2f; 
     public bool spawningEnabled = true;
+
+    void Awake()
+    {
+        if(Instance == null)
+            Instance = this;
+
+        else
+            Destroy(gameObject);
+    }
 
     private void Update()
     {
