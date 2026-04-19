@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 movement;
 
     [Header("Dash Settings")]
-    [SerializeField] private float dashForce = 15f;
+    [SerializeField] private float dashForce = 14f;
     [SerializeField] private float dashDuration = 0.15f;
     [SerializeField] private float dashCooldown = 1f;
 
