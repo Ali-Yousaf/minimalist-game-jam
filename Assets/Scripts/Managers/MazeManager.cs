@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering.Universal; // For Light2D
+using UnityEngine.Rendering.Universal;
 
 public class MazeManager : MonoBehaviour
 {
@@ -11,14 +11,17 @@ public class MazeManager : MonoBehaviour
     [SerializeField] private GameObject mazeGameObject;
 
     [Header("Lighting")]
-    [SerializeField] private CanvasGroup blackScreen; // Fullscreen UI (black image)
-    [SerializeField] private Light2D flashlight;      // URP 2D Light
+    [SerializeField] private Light2D globalLight;
+    [SerializeField] private Light2D flashlight;
     [SerializeField] private Transform player;
+
+    [Header("Flicker UI")]
+    [SerializeField] private CanvasGroup blackScreen;
 
     [Header("Flicker Settings")]
     [SerializeField] private int flickerCount = 6;
     [SerializeField] private float minFlickerTime = 0.05f;
-    [SerializeField] private float maxFlickerTime = 0.2f;
+    [SerializeField] private float maxFlickerTime = 0.15f;
 
     private bool hasTriggered = false;
 
@@ -28,6 +31,16 @@ public class MazeManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+    }
+
+    void Start()
+    {
+        // Normal state
+        globalLight.intensity = 1f;
+        flashlight.gameObject.SetActive(false);
+
+        if (blackScreen != null)
+            blackScreen.alpha = 0f;
     }
 
     void Update()
@@ -41,23 +54,29 @@ public class MazeManager : MonoBehaviour
 
     void LateUpdate()
     {
-        // Make flashlight follow player
+        // Flashlight follow + rotate
         if (flashlight != null && flashlight.gameObject.activeSelf)
         {
             flashlight.transform.position = player.position;
-
             RotateFlashlightToMouse();
         }
     }
 
     private IEnumerator TriggerMazeSequence()
     {
+        // Flicker effect
         yield return StartCoroutine(PlayLightBlinkingAnim());
 
+        // Enable maze gameplay
         EnableMaze();
 
-        yield return new WaitForSeconds(0.2f); // small delay for effect
+        // Fade to darkness
+        yield return StartCoroutine(FadeGlobalLight(0f, 0.4f));
 
+        // Small delay for suspense
+        yield return new WaitForSeconds(0.2f);
+
+        // Turn on flashlight
         EnableFlashlightMode();
     }
 
@@ -71,15 +90,43 @@ public class MazeManager : MonoBehaviour
     {
         for (int i = 0; i < flickerCount; i++)
         {
-            blackScreen.alpha = 1f;
+            // Lights OFF
+            if (blackScreen != null)
+                blackScreen.alpha = 1f;
+
+            globalLight.intensity = 0f;
+
             yield return new WaitForSeconds(Random.Range(minFlickerTime, maxFlickerTime));
 
-            blackScreen.alpha = 0f;
+            // Lights ON
+            if (blackScreen != null)
+                blackScreen.alpha = 0f;
+
+            globalLight.intensity = 1f;
+
             yield return new WaitForSeconds(Random.Range(minFlickerTime, maxFlickerTime));
         }
 
         // Final blackout
-        blackScreen.alpha = 1f;
+        if (blackScreen != null)
+            blackScreen.alpha = 1f;
+
+        globalLight.intensity = 0f;
+    }
+
+    private IEnumerator FadeGlobalLight(float target, float duration)
+    {
+        float start = globalLight.intensity;
+        float time = 0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            globalLight.intensity = Mathf.Lerp(start, target, time / duration);
+            yield return null;
+        }
+
+        globalLight.intensity = target;
     }
 
     private void EnableFlashlightMode()
