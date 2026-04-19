@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -19,6 +20,9 @@ public class MazeManager : MonoBehaviour
     [SerializeField] private int flickerCount = 8;
     [SerializeField] private float minFlickerTime = 0.05f;
     [SerializeField] private float maxFlickerTime = 0.15f;
+
+    [Header("UI Elemets")]
+    [SerializeField] private GameObject mazeEntryText;
 
     private MovieScreens movieScreens;
 
@@ -45,6 +49,7 @@ public class MazeManager : MonoBehaviour
         if (!hasTriggered && PlayerController.Instance.killCounter >= thresholdForMaze)
         {
             hasTriggered = true;
+            
             AudioManager.Instance.PlayMazeMusic();
             StartCoroutine(TriggerMazeSequence());
         }
@@ -63,6 +68,13 @@ public class MazeManager : MonoBehaviour
     {
         movieScreens.ActiveMovieScreens();
         yield return new WaitForSeconds(2);
+
+        mazeEntryText.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        mazeEntryText.SetActive(false);
+
+        // ✅ FIX: Turn lights ON AFTER text
+        globalLight.intensity = 1f;
 
         yield return StartCoroutine(FlickerLights());
 
@@ -88,11 +100,9 @@ public class MazeManager : MonoBehaviour
     {
         for (int i = 0; i < flickerCount; i++)
         {
-            // Lights OFF
             globalLight.intensity = 0f;
             yield return new WaitForSeconds(Random.Range(minFlickerTime, maxFlickerTime));
 
-            // Lights ON
             globalLight.intensity = 1f;
             yield return new WaitForSeconds(Random.Range(minFlickerTime, maxFlickerTime));
         }
