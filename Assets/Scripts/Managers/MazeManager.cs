@@ -73,7 +73,6 @@ public class MazeManager : MonoBehaviour
         if (flashlight != null && flashlight.gameObject.activeSelf)
         {
             flashlight.transform.position = player.position;
-            RotateFlashlightToMouse();
         }
     }
 
@@ -120,15 +119,6 @@ public class MazeManager : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.flashLightOnSFX);
         flashlight.gameObject.SetActive(true);
-    }
-
-    private void RotateFlashlightToMouse()
-    {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = mousePos - flashlight.transform.position;
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        flashlight.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     // =========================
