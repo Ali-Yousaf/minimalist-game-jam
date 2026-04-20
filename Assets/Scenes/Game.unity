@@ -343,8 +343,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00085020065, y: 6.5008, z: 0}
-    m_Extent: {x: 8.999849, y: 8.5, z: 0}
+    m_Center: {x: -0.00084996223, y: 6.0008, z: 0}
+    m_Extent: {x: 6.9998503, y: 8, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 1
@@ -357,8 +357,8 @@ MonoBehaviour:
   m_ShapePath:
   - {x: 0, y: 0.01, z: 0}
   - {x: 0, y: 0, z: 0}
-  - {x: 7, y: 13, z: 0}
-  - {x: -7, y: 13, z: 0}
+  - {x: 5, y: 12, z: 0}
+  - {x: -5, y: 12, z: 0}
 --- !u!4 &106233565
 Transform:
   m_ObjectHideFlags: 0
@@ -13181,6 +13181,9 @@ MonoBehaviour:
   minFlickerTime: 0.05
   maxFlickerTime: 0.2
   mazeEntryText: {fileID: 1485743032}
+  mainCamera: {fileID: 519420028}
+  mapBoundary: {fileID: 568231474}
+  Background: {fileID: 174929057}
 --- !u!1 &1856406775
 GameObject:
   m_ObjectHideFlags: 0

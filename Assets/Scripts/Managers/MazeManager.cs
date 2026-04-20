@@ -24,9 +24,19 @@ public class MazeManager : MonoBehaviour
     [Header("UI Elemets")]
     [SerializeField] private GameObject mazeEntryText;
 
+    [Header("Child Elements")]
+    [SerializeField] private GameObject mainCamera;
+    [SerializeField] private GameObject mapBoundary;
+    [SerializeField] private GameObject Background;   
+
     private MovieScreens movieScreens;
 
     private bool hasTriggered = false;
+
+    // ✅ Store original parents
+    private Transform camOriginalParent;
+    private Transform boundaryOriginalParent;
+    private Transform bgOriginalParent;
 
     void Awake()
     {
@@ -78,10 +88,11 @@ public class MazeManager : MonoBehaviour
         yield return StartCoroutine(FlickerLights());
 
         EnableMaze();
+        SetChildElements(); // ✅ Attach to player
         GridJuiceFX.Instance.DisableAllGridEffects();
+
         globalLight.intensity = 0f;
 
-        // Wait 3 seconds in darkness
         yield return new WaitForSeconds(4f);
 
         mazeEntryText.SetActive(false);
@@ -118,5 +129,29 @@ public class MazeManager : MonoBehaviour
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         flashlight.transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
+    // =========================
+    // CHILD ELEMENT HANDLING
+    // =========================
+
+    private void SetChildElements()
+    {
+        // Store original parents
+        camOriginalParent = mainCamera.transform.parent;
+        boundaryOriginalParent = mapBoundary.transform.parent;
+        bgOriginalParent = Background.transform.parent;
+
+        // Parent to player (preserve world position)
+        mainCamera.transform.SetParent(player, true);
+        mapBoundary.transform.SetParent(player, true);
+        Background.transform.SetParent(player, true);
+    }
+
+    private void RemoveChildElements()
+    {
+        mainCamera.transform.SetParent(camOriginalParent, true);
+        mapBoundary.transform.SetParent(boundaryOriginalParent, true);
+        Background.transform.SetParent(bgOriginalParent, true);
     }
 }
