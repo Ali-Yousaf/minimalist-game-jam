@@ -42,6 +42,7 @@ public class MazeManager : MonoBehaviour
     {
         globalLight.intensity = 1f;
         flashlight.gameObject.SetActive(false);
+        mazeGameObject.SetActive(false);
     }
 
     void Update()
@@ -51,6 +52,8 @@ public class MazeManager : MonoBehaviour
             hasTriggered = true;
             
             AudioManager.Instance.PlayMazeMusic();
+            Spawner.Instance.spawningEnabled = false;
+            
             StartCoroutine(TriggerMazeSequence());
         }
     }
@@ -67,33 +70,27 @@ public class MazeManager : MonoBehaviour
     private IEnumerator TriggerMazeSequence()
     {
         movieScreens.ActiveMovieScreens();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2.5f);
 
         mazeEntryText.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        mazeEntryText.SetActive(false);
-
-        // ✅ FIX: Turn lights ON AFTER text
         globalLight.intensity = 1f;
 
         yield return StartCoroutine(FlickerLights());
 
         EnableMaze();
         GridJuiceFX.Instance.DisableAllGridEffects();
-
-        // FULL DARK AFTER FLICKER
         globalLight.intensity = 0f;
 
         // Wait 3 seconds in darkness
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
 
+        mazeEntryText.SetActive(false);
         EnableFlashlightMode();
     }
 
     private void EnableMaze()
     {
         mazeGameObject.SetActive(true);
-        Spawner.Instance.spawningEnabled = false;
     }
 
     private IEnumerator FlickerLights()

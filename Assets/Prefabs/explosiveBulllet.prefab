@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4120979008815515461}
   - component: {fileID: 3599270857719615879}
   - component: {fileID: 4648659008335007111}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Subexplosion
   m_TagString: FxTemporaire
   m_Icon: {fileID: 0}
@@ -4720,7 +4720,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &4648659008335007111
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4766,6 +4766,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4797,7 +4798,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &2382347487926855396
 GameObject:
   m_ObjectHideFlags: 0
@@ -4809,7 +4809,7 @@ GameObject:
   - component: {fileID: 6872565902004316760}
   - component: {fileID: 6583702087818134563}
   - component: {fileID: 7370936265608190656}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: explosionParticle  x4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9528,7 +9528,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &7370936265608190656
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9574,6 +9574,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -9605,7 +9606,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &2808775071171828267
 GameObject:
   m_ObjectHideFlags: 0
@@ -9617,7 +9617,7 @@ GameObject:
   - component: {fileID: 237167127599580237}
   - component: {fileID: 631436092667639542}
   - component: {fileID: 3926074086212998778}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Subexplosion
   m_TagString: FxTemporaire
   m_Icon: {fileID: 0}
@@ -14326,7 +14326,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &3926074086212998778
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -14372,6 +14372,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -14403,7 +14404,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &3061129653294816470
 GameObject:
   m_ObjectHideFlags: 0
@@ -14418,7 +14418,7 @@ GameObject:
   - component: {fileID: 354013164046100896}
   - component: {fileID: 3619635740691526948}
   - component: {fileID: 4627972297444500253}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: explosiveBulllet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14447,6 +14447,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8050654954853283531
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -14492,6 +14493,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 8102358098348255977, guid: 92b4a729c0751a74cbc9c64aecbbfb07, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -14501,7 +14503,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!58 &7298856900791301184
 CircleCollider2D:
@@ -14586,6 +14587,7 @@ MonoBehaviour:
   explodeParticle_y4: {fileID: 5945326759043044974}
   explodeParticle_xM4: {fileID: 9023306921915329751}
   explodeParticle_yM4: {fileID: 7876273877848356506}
+  directionalExplosionDelay: 0.15
 --- !u!114 &4627972297444500253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14615,7 +14617,7 @@ GameObject:
   - component: {fileID: 4205143767383817497}
   - component: {fileID: 912148558943352721}
   - component: {fileID: 8201207573513360640}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Subexplosion
   m_TagString: FxTemporaire
   m_Icon: {fileID: 0}
@@ -19324,7 +19326,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &8201207573513360640
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -19370,6 +19372,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -19401,7 +19404,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &3829526197706999598
 GameObject:
   m_ObjectHideFlags: 0
@@ -19413,7 +19415,7 @@ GameObject:
   - component: {fileID: 1291182912689112600}
   - component: {fileID: 4536361709713722807}
   - component: {fileID: 8117955631379734249}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Subexplosion
   m_TagString: FxTemporaire
   m_Icon: {fileID: 0}
@@ -24122,7 +24124,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &8117955631379734249
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -24168,6 +24170,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -24199,7 +24202,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &4359108650888148913
 GameObject:
   m_ObjectHideFlags: 0
@@ -24211,7 +24213,7 @@ GameObject:
   - component: {fileID: 3844445679743421710}
   - component: {fileID: 5945326759043044974}
   - component: {fileID: 7992653755275190480}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: explosionParticle  y4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28930,7 +28932,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &7992653755275190480
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -28976,6 +28978,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -29007,7 +29010,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &6020028634199820758
 GameObject:
   m_ObjectHideFlags: 0
@@ -29019,7 +29021,7 @@ GameObject:
   - component: {fileID: 115491895627250568}
   - component: {fileID: 7876273877848356506}
   - component: {fileID: 4712291245529225332}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 'explosionParticle  y-4 '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33738,7 +33740,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &4712291245529225332
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -33784,6 +33786,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -33815,7 +33818,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &6596472817721294558
 GameObject:
   m_ObjectHideFlags: 0
@@ -33827,7 +33829,7 @@ GameObject:
   - component: {fileID: 1449078119648813648}
   - component: {fileID: 5581667567158951082}
   - component: {fileID: 2845286500356976034}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Subexplosion
   m_TagString: FxTemporaire
   m_Icon: {fileID: 0}
@@ -38536,7 +38538,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &2845286500356976034
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -38582,6 +38584,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -38613,7 +38616,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &6643784727204830314
 GameObject:
   m_ObjectHideFlags: 0
@@ -38625,7 +38627,7 @@ GameObject:
   - component: {fileID: 2361621372518912749}
   - component: {fileID: 9023306921915329751}
   - component: {fileID: 1553884116488178618}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: explosionParticle  x-4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43344,7 +43346,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &1553884116488178618
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -43390,6 +43392,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -43421,7 +43424,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &8985199346638435189
 GameObject:
   m_ObjectHideFlags: 0
@@ -43433,7 +43435,7 @@ GameObject:
   - component: {fileID: 3612435760798806461}
   - component: {fileID: 3039645849850744032}
   - component: {fileID: 1035028775290120192}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 'explosionParticle '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48152,7 +48154,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &1035028775290120192
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -48198,6 +48200,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -48229,4 +48232,3 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
