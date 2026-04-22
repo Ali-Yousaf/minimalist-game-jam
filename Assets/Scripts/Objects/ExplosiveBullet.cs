@@ -14,14 +14,14 @@ public class ExplosiveBullet : MonoBehaviour
 
     private void Start()
     {
-        powerup.SetActive(false);
+        
     }
 
-    public void Unlock()
-    {
-        powerup.SetActive(true);
-        StartCoroutine(InitialFill());
-    }
+    // public void Unlock()
+    // {
+    //     powerup.SetActive(true);
+    //     StartCoroutine(InitialFill());
+    // }
 
     public void EnableExplosiveBullets()
     {

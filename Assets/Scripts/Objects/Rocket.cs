@@ -13,14 +13,14 @@ public class Rocket : MonoBehaviour
 
     private void Start()
     {
-        powerup.SetActive(false);
+        
     }
 
-    public void Unlock()
-    {
-        powerup.SetActive(true);
-        StartCoroutine(StartCircularFill());
-    }
+    // public void Unlock()
+    // {
+    //     powerup.SetActive(true);
+    //     StartCoroutine(StartCircularFill());
+    // }
 
     public void ThrowRocket()
     {

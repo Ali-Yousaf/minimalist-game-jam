@@ -74,6 +74,6 @@ public class TankHealth : MonoBehaviour
     private void UnlockPowerup()
     {
         PowerupUnlockSequence.Instance.PlayUnlock(shieldPowerup.icon, "Shield", "throws a protective shield around the player");
-        shieldPowerup.Unlock();
+        //shieldPowerup.Unlock();
     }
 }

@@ -15,14 +15,14 @@ public class Shield : MonoBehaviour
     private void Start()
     {
         playerShield.SetActive(false);
-        powerup.SetActive(false);
+        //powerup.SetActive(false);
     }
 
-    public void Unlock()
-    {
-        powerup.SetActive(true);
-        StartCoroutine(InitialFill());
-    }
+    // public void Unlock()
+    // {
+    //     powerup.SetActive(true);
+    //     StartCoroutine(InitialFill());
+    // }
 
     public void ActivateShield()
     {
