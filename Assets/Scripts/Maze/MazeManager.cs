@@ -27,7 +27,7 @@ public class MazeManager : MonoBehaviour
     [Header("Child Elements")]
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject mapBoundary;
-    [SerializeField] private GameObject Background;   
+    [SerializeField] private GameObject[] backgrounds;
 
     private MovieScreens movieScreens;
 
@@ -36,7 +36,6 @@ public class MazeManager : MonoBehaviour
     // ✅ Store original parents
     private Transform camOriginalParent;
     private Transform boundaryOriginalParent;
-    private Transform bgOriginalParent;
 
     void Awake()
     {
@@ -130,18 +129,25 @@ public class MazeManager : MonoBehaviour
         // Store original parents
         camOriginalParent = mainCamera.transform.parent;
         boundaryOriginalParent = mapBoundary.transform.parent;
-        bgOriginalParent = Background.transform.parent;
 
         // Parent to player (preserve world position)
         mainCamera.transform.SetParent(player, true);
         mapBoundary.transform.SetParent(player, true);
-        Background.transform.SetParent(player, true);
+
+        for(int i = 0; i < backgrounds.Length; i++)
+        {
+            backgrounds[i].SetActive(true);
+        }
     }
 
     private void RemoveChildElements()
     {
         mainCamera.transform.SetParent(camOriginalParent, true);
         mapBoundary.transform.SetParent(boundaryOriginalParent, true);
-        Background.transform.SetParent(bgOriginalParent, true);
+
+        for(int i = 0; i < backgrounds.Length; i++)
+        {
+            backgrounds[i].SetActive(false);
+        }
     }
 }

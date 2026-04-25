@@ -12,9 +12,7 @@ public class TankHealth : MonoBehaviour
 
     [SerializeField] private SpriteRenderer Hull;
     [SerializeField] private SpriteRenderer Gun;
-
-    //TANK BOSS UNLOCKS SHIELD POWERUP
-    public Shield shieldPowerup;
+    [SerializeField] private Sprite rewardIcon;
 
     private TankMovement tankMovement;
     public float currentHealth;
@@ -73,7 +71,7 @@ public class TankHealth : MonoBehaviour
 
     private void UnlockPowerup()
     {
-        PowerupUnlockSequence.Instance.PlayUnlock(shieldPowerup.icon, "Shield", "throws a protective shield around the player");
+        //RewardUnlockSequence.Instance.PlayUnlock(rewardIcon.Icon, "Shield", "throws a protective shield around the player");
         //shieldPowerup.Unlock();
     }
 }
