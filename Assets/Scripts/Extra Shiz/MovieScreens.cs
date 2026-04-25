@@ -13,7 +13,7 @@ public class MovieScreens : MonoBehaviour
 
     [Header("Camera Settings")]
     [SerializeField] private float targetSize = 30f;
-    [SerializeField] private float originalSize = 15f;
+    [SerializeField] private float originalSize = 19f;
     [SerializeField] private float smoothTime = 0.5f;
     [SerializeField] private float waitTime = 2.5f;
 

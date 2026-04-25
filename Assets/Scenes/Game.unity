@@ -22383,6 +22383,7 @@ GameObject:
   - component: {fileID: 1802778003}
   - component: {fileID: 1802778006}
   - component: {fileID: 1802778007}
+  - component: {fileID: 1802778008}
   m_Layer: 0
   m_Name: GAME MANAGER
   m_TagString: Untagged
@@ -22515,6 +22516,21 @@ MonoBehaviour:
   - {fileID: 802951361}
   - {fileID: 418582659}
   - {fileID: 51551835}
+--- !u!114 &1802778008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802778000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b71b5d865a2e1c42943cabd7b537cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MazeFlare
+  flareCount: 5
+  flarePrefab: {fileID: 6365941922465621608, guid: c84b43a01c63f474fa998392439504de, type: 3}
+  canSpawnFlares: 0
 --- !u!1 &1852057332
 GameObject:
   m_ObjectHideFlags: 0
