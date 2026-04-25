@@ -13,6 +13,7 @@ TagManager:
   - Spawner
   - Tank Rocket
   - Maze
+  - MazeExit
   layers:
   - Default
   - TransparentFX

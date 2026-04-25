@@ -8,8 +8,15 @@ public class MazeFlare : MonoBehaviour
     
     [SerializeField] private GameObject flarePrefab;
     
-    public bool canSpawnFlares = false;
+    [SerializeField] private Transform player;
     
+    public bool canSpawnFlares = false;
+
+    void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.F) && canSpawnFlares)
@@ -26,7 +33,7 @@ public class MazeFlare : MonoBehaviour
             return;
         }
 
-        Instantiate(flarePrefab, transform.position, Quaternion.identity);
+        Instantiate(flarePrefab, player.position, Quaternion.identity);
         flareCount--;
     }
 }

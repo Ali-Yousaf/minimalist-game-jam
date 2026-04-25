@@ -2853,7 +2853,7 @@ MonoBehaviour:
   SFXsource: {fileID: 1000247410}
   mainMenuMusic: {fileID: 8300000, guid: 1b5430fcf27959f4e86c5f591505d96e, type: 3}
   bossMusic: {fileID: 8300000, guid: 6c40c9434351a134c934982964472501, type: 3}
-  mazeMusic: {fileID: 8300000, guid: f1f7aec6ca06f904d9c6a3c4b8372edf, type: 3}
+  mazeMusic: {fileID: 8300000, guid: a6a3aaac4dbdf8a4798c468728b7dd08, type: 3}
   laserShootSFX: {fileID: 8300000, guid: f8319c8c4a587b04f994c18671f2a16f, type: 3}
   explosionSFX: {fileID: 8300000, guid: ba0bd641a78e2a64ab4f0c0498d4eb19, type: 3}
   upgradeUnlockSFX: {fileID: 8300000, guid: 6ebe5c1f5fdada743b0a4f5401baa328, type: 3}
