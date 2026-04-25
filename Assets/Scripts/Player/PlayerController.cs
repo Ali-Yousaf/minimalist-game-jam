@@ -266,7 +266,7 @@ public class PlayerController : MonoBehaviour
 
     public void IncreaseShieldDuration()
     {
-        var shield = FindFirstObjectByType<Shield>();
+        var shield = FindAnyObjectByType<Shield>();
         shield.shieldDuration += 7;
     }
 }

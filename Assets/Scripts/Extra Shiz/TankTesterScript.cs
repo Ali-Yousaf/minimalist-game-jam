@@ -5,7 +5,6 @@ public class TankTesterScript : MonoBehaviour
     public GameObject tank;
     public GameObject tankHealthBar;
 
-    public PlayerController player;
     public Spawner spawner;
 
     public bool enableTesting = false;
@@ -28,8 +27,9 @@ public class TankTesterScript : MonoBehaviour
 
     public void StartTest()
     {
-        player.EnableMovement();
-        player.EnableDash();
+        PlayerController.Instance.EnableMovement();
+        PlayerController.Instance.EnableDash();
+        PlayerController.Instance.laserDamage = 5000;
         spawner.spawningEnabled = false;
         BossFightManager.Instance.EnableBossFight();
     }
