@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TankHealth : MonoBehaviour
 {
@@ -71,7 +72,6 @@ public class TankHealth : MonoBehaviour
 
     private void UnlockPowerup()
     {
-        //RewardUnlockSequence.Instance.PlayUnlock(rewardIcon.Icon, "Shield", "throws a protective shield around the player");
-        //shieldPowerup.Unlock();
+        RewardUnlockSequence.Instance.PlayUnlock(rewardIcon, "Shield", "throws a protective shield around the player");
     }
 }
