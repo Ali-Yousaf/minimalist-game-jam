@@ -30,6 +30,7 @@ public class MazeManager : MonoBehaviour
     [SerializeField] private GameObject[] backgrounds;
 
     private MovieScreens movieScreens;
+    private MazeFlare mazeFlare;
 
     private bool hasTriggered = false;
 
@@ -45,6 +46,7 @@ public class MazeManager : MonoBehaviour
             Destroy(gameObject);
     
         movieScreens = FindAnyObjectByType<MovieScreens>();
+        mazeFlare = FindAnyObjectByType<MazeFlare>();
     }
 
     void Start()
@@ -100,6 +102,13 @@ public class MazeManager : MonoBehaviour
     private void EnableMaze()
     {
         mazeGameObject.SetActive(true);
+        mazeFlare.canSpawnFlares = true;
+    }
+
+    public void DisableMaze()
+    {
+        mazeGameObject.SetActive(false);
+        mazeFlare.canSpawnFlares = false;
     }
 
     private IEnumerator FlickerLights()
