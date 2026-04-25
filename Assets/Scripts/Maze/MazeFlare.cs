@@ -8,7 +8,7 @@ public class MazeFlare : MonoBehaviour
     
     [SerializeField] private GameObject flarePrefab;
     
-    [SerializeField] private Transform player;
+    private Transform player;
     
     public bool canSpawnFlares = false;
 

@@ -127,6 +127,8 @@ public class MazeManager : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.flashLightOnSFX);
         flashlight.gameObject.SetActive(true);
+
+        DialougeManager.Instance.ShowDialogue("Press F to drop Flares", 2f, false);
     }
 
     // =========================
