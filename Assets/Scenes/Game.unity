@@ -20262,7 +20262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &794444104
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22429,7 +22429,7 @@ MonoBehaviour:
   descText: {fileID: 1183712163}
   slideDuration: 0.5
   displayTime: 1.5
-  startY: -600
+  startY: -1500
   endY: 0
 --- !u!1 &1287795032
 GameObject:
