@@ -14,7 +14,6 @@ public class TankHealth : MonoBehaviour
     [SerializeField] private SpriteRenderer Hull;
     [SerializeField] private SpriteRenderer Gun;
     [SerializeField] private Sprite rewardIcon;
-
     private TankMovement tankMovement;
     public float currentHealth;
 
@@ -56,11 +55,11 @@ public class TankHealth : MonoBehaviour
     private void Die()
     {
         print("Tank Exploded");
+        UnlockPowerup();
 
         Hull.enabled = false;
         Gun.enabled = false;
 
-        UnlockPowerup();
 
         BossFightManager.Instance.BossDied();
         AudioManager.Instance.PlaySFX(AudioManager.Instance.explosionSFX);
@@ -72,6 +71,16 @@ public class TankHealth : MonoBehaviour
 
     private void UnlockPowerup()
     {
-        //RewardUnlockSequence.Instance.PlayUnlock(rewardIcon, "Shield", "throws a protective shield around the player");
+        if (RewardUnlockSequence.Instance == null)
+        {
+            Debug.LogError("RewardUnlockSequence is NULL!");
+            return;
+        }
+
+        RewardUnlockSequence.Instance.PlayUnlock(
+            rewardIcon,
+            "Brozen Key.",
+            "First step towards freedom."
+        );
     }
 }
