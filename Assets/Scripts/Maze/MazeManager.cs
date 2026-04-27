@@ -8,7 +8,7 @@ public class MazeManager : MonoBehaviour
     public static MazeManager Instance;
 
     [Header("Maze Settings")]
-    [SerializeField] private int thresholdForMaze = 501;
+    [SerializeField] private int KillThreshold = 501;
     [SerializeField] private GameObject mazeGameObject;
 
     [Header("Lighting")]
@@ -58,7 +58,7 @@ public class MazeManager : MonoBehaviour
 
     void Update()
     {
-        if (!hasTriggered && PlayerController.Instance.killCounter >= thresholdForMaze)
+        if (!hasTriggered && PlayerController.Instance.killCounter >= KillThreshold)
         {
             hasTriggered = true;
             
@@ -123,12 +123,24 @@ public class MazeManager : MonoBehaviour
         }
     }
 
+    private IEnumerator FlickerLightsBackOn()
+    {
+        for (int i = 0; i < flickerCount; i++)
+        {
+            globalLight.intensity = 1f;
+            yield return new WaitForSeconds(Random.Range(minFlickerTime, maxFlickerTime));
+
+            globalLight.intensity = 0f;
+            yield return new WaitForSeconds(Random.Range(minFlickerTime, maxFlickerTime));
+        }
+    }
+
     private void EnableFlashlightMode()
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.flashLightOnSFX);
         flashlight.gameObject.SetActive(true);
 
-        DialougeManager.Instance.ShowDialogue("Press F to drop Flares", 2f, false, DialougeManager.DialogueColorType.Blue);
+        DialougeManager.Instance.ShowDialogue("Press F to drop Flares", 3f, true, DialougeManager.DialogueColorType.Blue);
     }
 
     // =========================
@@ -160,5 +172,35 @@ public class MazeManager : MonoBehaviour
         {
             backgrounds[i].SetActive(false);
         }
+    }
+
+    // public API
+    public void MazeComplete()
+    {
+        StartCoroutine(MazeCompleteRoutine());
+    }
+
+    private IEnumerator MazeCompleteRoutine()
+    {
+        // Disable flashlight 
+        if (flashlight != null && flashlight.gameObject.activeSelf)
+        {
+            flashlight.gameObject.SetActive(false);
+        }
+
+        // Flicker lights back ON
+        yield return StartCoroutine(FlickerLightsBackOn());
+
+        // Restore global light fully
+        globalLight.intensity = 1f;
+
+        // Reset environment
+        RemoveChildElements();
+        DisableMaze();
+
+        // Re-enable systems
+        Spawner.Instance.spawningEnabled = true;
+
+        AudioManager.Instance.PlayMainMenuMusic();
     }
 }

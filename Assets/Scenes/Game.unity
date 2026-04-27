@@ -20454,10 +20454,11 @@ GameObject:
   m_Component:
   - component: {fileID: 864149896}
   - component: {fileID: 864149897}
+  - component: {fileID: 864149898}
   m_Layer: 0
   m_Name: MazeExitTrigger
   m_TagString: MazeExit
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -20470,7 +20471,7 @@ Transform:
   m_GameObject: {fileID: 864149895}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.12, y: 116.76, z: 0}
+  m_LocalPosition: {x: -3.39, y: 115.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20510,7 +20511,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.45039415, y: -0.75065994}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -20520,8 +20521,20 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 7.7559156, y: 2.50132}
+  m_Size: {x: 10, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &864149898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864149895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34e992c35e4f00b4aa7ac353087860cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MazeExitTrigger
 --- !u!1 &882404522
 GameObject:
   m_ObjectHideFlags: 0
