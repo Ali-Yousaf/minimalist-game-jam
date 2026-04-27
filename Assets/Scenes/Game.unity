@@ -17589,13 +17589,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenuHandler, Assembly-CSharp
-        m_MethodName: HidePauseMenu
-        m_Mode: 1
+      - m_Target: {fileID: 437388504}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -17831,7 +17843,7 @@ RectTransform:
   m_GameObject: {fileID: 422604855}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8960494, y: 0.8960494, z: 0.8960494}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1718835870}
@@ -17863,8 +17875,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: TEXT GOES HERE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 462dc805623511542ba4ab9a4bca81df, type: 2}
-  m_sharedMaterial: {fileID: 1684941733825398184, guid: 462dc805623511542ba4ab9a4bca81df, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e2ff34c21738d3f48b572fa3ced7fdb3, type: 2}
+  m_sharedMaterial: {fileID: -6775188929015551837, guid: e2ff34c21738d3f48b572fa3ced7fdb3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -17888,7 +17900,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 52.2
+  m_fontSize: 49.35
   m_fontSizeBase: 66.9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -18441,17 +18453,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenuHandler, Assembly-CSharp
-        m_MethodName: PauseButtonPressed
-        m_Mode: 1
+      - m_Target: {fileID: 437388504}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &519420028
 GameObject:
@@ -19595,10 +19607,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenuHandler, Assembly-CSharp
-        m_MethodName: ShowStatsPanel
-        m_Mode: 1
+      - m_Target: {fileID: 1569558003}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 437388504}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -21416,10 +21440,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenuHandler, Assembly-CSharp
-        m_MethodName: HideStatsPanel
-        m_Mode: 1
+      - m_Target: {fileID: 437388504}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1569558003}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -22851,6 +22887,7 @@ GameObject:
   - component: {fileID: 1385173258}
   - component: {fileID: 1385173256}
   - component: {fileID: 1385173259}
+  - component: {fileID: 1385173261}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -23045,6 +23082,21 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &1385173261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385173253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b71b5d865a2e1c42943cabd7b537cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MazeFlare
+  flareCount: 5
+  flarePrefab: {fileID: 6365941922465621608, guid: c84b43a01c63f474fa998392439504de, type: 3}
+  canSpawnFlares: 0
 --- !u!1 &1485743032
 GameObject:
   m_ObjectHideFlags: 0
@@ -24430,8 +24482,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.0000038146973, y: 209}
-  m_SizeDelta: {x: 971.5833, y: 125.472}
+  m_AnchoredPosition: {x: 0, y: 209}
+  m_SizeDelta: {x: 1031.6, y: 121.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1718835871
 MonoBehaviour:
@@ -24870,7 +24922,6 @@ GameObject:
   - component: {fileID: 1802778003}
   - component: {fileID: 1802778006}
   - component: {fileID: 1802778007}
-  - component: {fileID: 1802778008}
   - component: {fileID: 1802778009}
   m_Layer: 0
   m_Name: GAME MANAGER
@@ -24962,10 +25013,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossFightManager
   spawner: {fileID: 1063931614}
   bossFightEnabled: 0
-  KillThresholdToSpawn: 301
+  KillThresholdToSpawn: 205
   tank: {fileID: 827844459}
   tankHealthBar: {fileID: 2135717060}
-  movieScreens: {fileID: 0}
 --- !u!114 &1802778007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24978,7 +25028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c551f3f54bcb184dbdab22c2410ce85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MazeManager
-  thresholdForMaze: 1
+  thresholdForMaze: 410
   mazeGameObject: {fileID: 266985118}
   globalLight: {fileID: 619394801}
   flashlight: {fileID: 106233564}
@@ -25004,21 +25054,6 @@ MonoBehaviour:
   - {fileID: 802951361}
   - {fileID: 418582659}
   - {fileID: 51551835}
---- !u!114 &1802778008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802778000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b71b5d865a2e1c42943cabd7b537cea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MazeFlare
-  flareCount: 5
-  flarePrefab: {fileID: 6365941922465621608, guid: c84b43a01c63f474fa998392439504de, type: 3}
-  canSpawnFlares: 0
 --- !u!114 &1802778009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25534,7 +25569,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 345674469}
         m_TargetAssemblyTypeName: PauseMenuHandler, Assembly-CSharp
         m_MethodName: BackToMainMenu
         m_Mode: 1

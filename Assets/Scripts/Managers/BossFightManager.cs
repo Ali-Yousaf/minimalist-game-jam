@@ -9,7 +9,7 @@ public class BossFightManager : MonoBehaviour
     [SerializeField] private int KillThresholdToSpawn = 325;
     [SerializeField] private GameObject tank;
     [SerializeField] private GameObject tankHealthBar;
-    [SerializeField] private MovieScreens movieScreens;
+    private MovieScreens movieScreens;
 
     private bool bossSpawned = false;
 
