@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MazeExitTrigger : MonoBehaviour
 {
@@ -8,6 +10,15 @@ public class MazeExitTrigger : MonoBehaviour
         {
             Debug.Log("Maze Completed!");
             MazeManager.Instance.MazeComplete();
+            DialougeManager.Instance.ShowDialogue("You completed the maze!!", 4f, true, DialougeManager.DialogueColorType.Blue);
+
+            StartCoroutine(LoadMenu());
         }
+    }
+
+    private IEnumerator LoadMenu()
+    {
+        yield return new WaitForSeconds(3.5f);
+        SceneManager.LoadScene("MainMenu");
     }
 }

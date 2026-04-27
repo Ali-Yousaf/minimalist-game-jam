@@ -20507,7 +20507,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -24933,9 +24933,9 @@ GameObject:
   - component: {fileID: 1802778005}
   - component: {fileID: 1802778002}
   - component: {fileID: 1802778003}
+  - component: {fileID: 1802778009}
   - component: {fileID: 1802778006}
   - component: {fileID: 1802778007}
-  - component: {fileID: 1802778009}
   m_Layer: 0
   m_Name: GAME MANAGER
   m_TagString: Untagged
@@ -25026,7 +25026,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossFightManager
   spawner: {fileID: 1063931614}
   bossFightEnabled: 0
-  KillThresholdToSpawn: 205
+  KillThreshold: 325
   tank: {fileID: 827844459}
   tankHealthBar: {fileID: 2135717060}
 --- !u!114 &1802778007
@@ -25041,7 +25041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c551f3f54bcb184dbdab22c2410ce85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MazeManager
-  thresholdForMaze: 410
+  KillThreshold: 1
   mazeGameObject: {fileID: 266985118}
   globalLight: {fileID: 619394801}
   flashlight: {fileID: 106233564}
